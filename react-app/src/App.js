@@ -40,9 +40,12 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+        <ProtectedRoute path='/jobs' exact={true} >
+          <h1>My jobs Page</h1>
         </ProtectedRoute>
+        <Route path='/' exact={true} >
+          <h1>My Home Page</h1>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
