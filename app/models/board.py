@@ -15,5 +15,5 @@ class Board(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'userId': self.userId,
+            'user_id': self.user_id,
         }
