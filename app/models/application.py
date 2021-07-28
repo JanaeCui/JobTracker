@@ -15,6 +15,7 @@ class Application(db.Model):
 
     users = db.relationship('User', back_populates='applications')
     jobs = db.relationship('Job', back_populates='applications')
+    children = db.relationship('Child', back_populates='applications')
 
     def to_dict(self):
         return {

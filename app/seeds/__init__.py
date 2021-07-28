@@ -3,6 +3,8 @@ from .users import seed_users, undo_users
 from .jobs import seed_jobs, undo_jobs
 from .companies import seed_companies, undo_companies
 from .applications import seed_applications, undo_applications
+from .boards import seed_boards, undo_boards
+from .children import seed_children, undo_children
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -16,6 +18,9 @@ def seed():
     seed_companies()
     seed_jobs()
     seed_applications()
+    seed_children()
+    seed_boards()
+
     # Add other seed functions here
 
 
@@ -26,4 +31,7 @@ def undo():
     undo_companies()
     undo_jobs()
     undo_applications()
+    undo_children()
+    undo_boards()
+
     # Add other undo functions here
