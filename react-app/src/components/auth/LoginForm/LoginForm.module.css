@@ -106,3 +106,6 @@
 .iconParentDiv{
     position: relative;
 }
+.label{
+    margin-bottom: 5px;
+}
