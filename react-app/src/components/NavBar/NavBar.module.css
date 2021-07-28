@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;700&display=swap');
+
+.navBarOuterDiv{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 125px;
+    left: 0px;
+    top: 0px;
+    padding-left: 120px;
+    padding-right: 120px;
+    background-color: #412468;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width: 60px;
+    height: 60px;
+}
+.logInButton{
+    width: 102px;
+    height: 34.5px;
+    background-color:#412468;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    margin-right: 14px;
+    font-family: 'Nunito';
+    font-size: 16px;
+    color: #FFFFFF;
+}
+.signUpButton{
+    width: 102px;
+    height: 34.5px;
+    background-color:#412468;
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+    font-family: 'Nunito';
+    font-size: 16px;
+    color: #FFFFFF;
+}
+.logInButton:hover, .signUpButton:hover{
+    border:none;
+    background-color: #916AB9;
+}

@@ -1,0 +1,108 @@
+.nav{
+    width: 100%;
+    height: 125px;
+    padding-left: 120px;
+    padding-right: 120px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+.logo{
+    width: 60px;
+    height: 60px;
+}
+.outerDiv{
+    width: 100%;
+    height: 952px;
+    margin: 0px;
+    background-color:#412468;
+}
+.formDiv{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorsDiv{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+.errors{
+    color: #FB717E;
+    font-weight: bold;
+}
+.input{
+    width: 325px;
+    height: 56px;
+    border: none;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding-left: 40px;
+}
+.email{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.label{
+   font-size: 16px;
+   color: #FFFFFF;
+}
+
+.password{
+    margin-bottom: 30px;
+}
+.button{
+    width: 325px;
+    height: 56px;
+    background-color: #916AB9;
+    border: none;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
+}
+.logInDiv, .demoUserDiv, .askAccountDiv, .errorSmallDiv{
+    width: 325px;
+    display: flex;
+    justify-content: center;
+}
+.title{
+    font-size: 24px;
+    font-weight: bold;
+    color:#FFFFFF;
+}
+.demoUser{
+    font-size: 16px;
+    font-weight: bold;
+    color:#FFFFFF;
+    margin-top: 20px;
+}
+.askAccount{
+    font-size: 16px;
+    color:#FFFFFF;
+    margin-top: 10px;
+}
+
+.signUp{
+    margin-left: 10px;
+    font-weight: bold;
+}
+.emailIcon{
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    size: 50px;
+}
+.passwordIcon{
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    size: 50px;
+}
+.iconParentDiv{
+    position: relative;
+}
