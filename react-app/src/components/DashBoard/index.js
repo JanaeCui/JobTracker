@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
 import LogoutButton from '../auth/LogoutButton/index';
 import ProfileName from '../ProfileName/index';
@@ -10,10 +10,21 @@ import { UilPlus } from '@iconscout/react-unicons'
 import ProfilePicture from "../ProfilePicture/index"
 import { FaRegBell } from "react-icons/fa"
 import { IoLogOutOutline } from "react-icons/io5"
+import BoardCard from "../BoardCard/index"
 
 
 const DashBoard = () => {
+  const boards = useSelector((state) => Object.values(state.boards));
 
+  useEffect(()=>{
+    dispatchEvent(getBoards())
+  })
+
+  const renderBoardCard = ()=>{
+    boards.map((board)=>(
+      <BoardCard key={board.id} board={board} />
+    ))
+  }
 
   return (
 
@@ -31,6 +42,9 @@ const DashBoard = () => {
             <div className={styles.myBoardTitleAndAddButtonGroup}>
               <div className={styles.myBoard}>My Boards</div>
               <UilPlus className={styles.addBoardButton}/>
+            </div>
+            <div className={styles.boardCardsDiv}>
+              {renderBoardCard()}
             </div>
             <div className={styles.leftBarBottom}>
               <div className={styles.alarmGroup}>
