@@ -144,7 +144,7 @@
 @media only screen and (max-width: 860px) {
     .outerDiv{
         width: 100%;
-        height: 100%;
+        height: 1860px;
         margin: 0px;
         background-color:#412468;
     }
