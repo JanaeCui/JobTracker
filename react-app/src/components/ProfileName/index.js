@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Typography, InputBase } from '@material-ui/core';
+import { InputBase } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from '../../store/session';
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import styles from "./ProfileName.module.css";
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -14,7 +14,7 @@ export default function ProfileName() {
   const name = allUsers[0].username
   const [newTitle, setNewTitle] = useState(name);
 
-  const useStyle = makeStyles((theme) => ({
+  const useStyle = makeStyles(() => ({
     input: {
       fontWeight: 'bold',
       width:'7rem',
@@ -37,7 +37,7 @@ export default function ProfileName() {
     setOpen(false);
   };
   return (
-    <div>
+    <div >
       {open ? (
         <div>
           <InputBase
