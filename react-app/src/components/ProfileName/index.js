@@ -11,7 +11,6 @@ export default function ProfileName() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const allUsers = useSelector((state) => Object.values(state.session));
-  console.log(allUsers[0].username)
   const name = allUsers[0].username
   const [newTitle, setNewTitle] = useState(name);
 

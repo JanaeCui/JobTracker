@@ -32,7 +32,7 @@ const NavBar = () => {
           {/* <NavLink to='/' exact={true} activeClassName='active'>
             Home
           </NavLink> */}
-           <img className={styles.logo} src={logo} onClick={routeChange}/>
+           <img className={styles.logo} src={logo} onClick={routeChange}></img>
         </div>
         <div>
           {/* <NavLink to='/login' exact={true} activeClassName='active'>

@@ -56,7 +56,7 @@ const LoginForm = () => {
   return (
     <div className={styles.outerDiv}>
       <div className={styles.nav}>
-        <img onClick={logoRouteChange} className={styles.logo} src={logo}/>
+        <img onClick={logoRouteChange} className={styles.logo} src={logo}></img>
       </div>
       <div className={styles.formDiv}>
 
