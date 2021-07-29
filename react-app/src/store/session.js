@@ -12,8 +12,9 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const editUser = () => ({
+const editUser = (user) => ({
   type: EDIT_USER,
+  payload: user
 })
 
 const initialState = { user: null };
@@ -84,7 +85,8 @@ export const updateUser = (username) => async (dispatch) => {
     })
   });
   if (response.ok) {
-    dispatch(editUser());
+    const data = await response.json();
+    dispatch(editUser(data));
  }
 
 }

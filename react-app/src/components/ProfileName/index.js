@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Typography, InputBase } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from '../../store/session';
+import { NavLink, useHistory } from "react-router-dom";
+import styles from "./ProfileName.module.css";
 
 export default function ProfileName() {
   const dispatch = useDispatch();
@@ -33,11 +35,13 @@ export default function ProfileName() {
         </div>
       ) : (
         <div>
-          <Typography
+          <NavLink
+            className={styles.NavLink}
+            to ="#"
             onClick={() => setOpen(!open)}
           >
            {name}
-          </Typography>
+          </NavLink>
         </div>
       )}
     </div>
