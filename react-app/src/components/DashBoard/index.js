@@ -29,7 +29,7 @@ const DashBoard = () => {
             <div className={styles.leftBarBottom}>
               <div className={styles.alarmGroup}>
                 <FaRegBell className={styles.leftBarIcon}/>
-                <LogoutButton className={styles.AlarmButton}/>
+                {/* <LogoutButton className={styles.AlarmButton}/> */}
               </div>
               <div className={styles.logOutGroup}>
                 <IoLogOutOutline className={styles.leftBarIcon}/>
