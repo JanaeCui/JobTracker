@@ -158,7 +158,7 @@
         flex-direction: column;
         box-sizing: border-box;
         padding-top: 80px;
-        margin-left: 60px;
+        padding-left: 60px;
         align-items: center;
     }
 
