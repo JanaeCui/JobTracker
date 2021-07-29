@@ -23,7 +23,6 @@ const LandingPage = () => {
 
 
     return (
-        <div className="conainer">
            <div className={styles.outerDiv}>
                 <NavBar children='Hello' />
                 <div className={styles.landingPageOuterDiv}>
@@ -66,7 +65,6 @@ const LandingPage = () => {
                     <div className={styles.copyRight}>© Job Tracker, 2021. All rights reserved.</div>
                 </div>
             </div>
-        </div>
     );
   }
 

@@ -1,0 +1,99 @@
+.outerContainer{
+    display: flex;
+    position: relative;
+
+}
+.dashBoardBigPlusButton{
+    position: absolute;
+    bottom:2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #916AB9;
+    border-radius: 3rem;
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.dashBoardBigPlusButton:hover{
+    background-color: #724e95;
+}
+
+.leftBar{
+    width: 17rem;
+    height: 63.05rem;
+    background-color: #412468;
+}
+.rightPart{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+}
+.searchBar{
+    width: 23rem;
+    height: 3rem;
+    background-color: #EFF0F6;
+    border: 1px solid #CCCCCC;
+    border-radius: 0.48rem;
+    box-sizing: border-box;
+    padding-left: 3rem;
+}
+
+.searchBar:focus{
+    transition: all 0.3s ease-in-out 0s;
+    outline: none;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.281);
+}
+.searchBarAndIcon{
+    margin: 2rem;
+    position: relative;
+}
+.searchIcon{
+    position: absolute;
+    top: 0.7rem;
+    left: 1rem;
+}
+.rightPartBottomDiv{
+    display: flex;
+}
+.appliedSection, .interviewedSection, .offeredSection, .rejectedSection{
+    height:56rem;
+    width: 24rem;
+    border-top: 0.1rem solid #A0A3BD ;
+    border-right: 0.1rem solid #A0A3BD ;
+    box-sizing: border-box;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.applicationTitle{
+    font-weight: bold;
+    font-size: 1.08rem;
+}
+.colorUnderlineApplied{
+    width: 20rem;
+    height: 0.4rem;
+    background-color: #916AB9;
+}
+
+.colorUnderlineInterviewed{
+    width: 20rem;
+    height: 0.4rem;
+    background-color: #61A5EF;
+}
+.colorUnderlineOffered{
+    width: 20rem;
+    height: 0.4rem;
+    background-color: #87D390;
+}
+.colorUnderlineRejected{
+    width: 20rem;
+    height: 0.4rem;
+    background-color: #FFCB00;
+}
