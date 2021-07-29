@@ -4,7 +4,7 @@
 
 }
 .dashBoardBigPlusButton{
-    position: absolute;
+    position: fixed;
     bottom:2rem;
     right: 2rem;
     width: 3.5rem;
@@ -103,6 +103,7 @@
     flex-direction: column;
     align-items: center;
 }
+
 .applicationTitle{
     font-weight: bold;
     font-size: 1.08rem;

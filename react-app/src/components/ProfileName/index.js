@@ -17,8 +17,11 @@ export default function ProfileName() {
   const useStyle = makeStyles((theme) => ({
     input: {
       fontWeight: 'bold',
+      width:'7rem',
+      multiline: true,
       '&:focus': {
-        color: '#FFCB00'
+        color: '#FFCB00',
+        multiline: true,
       },
     },
   }));
@@ -52,13 +55,14 @@ export default function ProfileName() {
           />
         </div>
       ) : (
-        <div>
+        <div className={styles.originNameDiv}>
           <NavLink
             className={styles.NavLink}
             to ="#"
             onClick={() => setOpen(!open)}
           >
-           {name}
+            <span className={styles.name}>{name}</span>
+
           </NavLink>
         </div>
       )}

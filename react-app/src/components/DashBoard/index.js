@@ -23,7 +23,9 @@ const DashBoard = () => {
               <ProfilePicture/>
               <div className={styles.sayHiGroup}>
                 <div className={styles.hey}>Hey</div>
-                <ProfileName/>
+                <div className={styles.profileName}>
+                  <ProfileName />
+                </div>
               </div>
             </div>
             <div className={styles.leftBarBottom}>
@@ -61,6 +63,7 @@ const DashBoard = () => {
                 <div className={`${styles.rejectedSection} .col-xs-6 .col-sm-3`}>
                   <div className={styles.applicationTitle}>REJECTED</div>
                   <div className={styles.colorUnderlineRejected}></div>
+
                 </div>
             </div>
           </div>
