@@ -28,6 +28,10 @@ const DashBoard = () => {
                 </div>
               </div>
             </div>
+            <div className={styles.myBoardTitleAndAddButtonGroup}>
+              <div className={styles.myBoard}>My Boards</div>
+              <UilPlus className={styles.addBoardButton}/>
+            </div>
             <div className={styles.leftBarBottom}>
               <div className={styles.alarmGroup}>
                 <FaRegBell className={styles.leftBarIcon}/>

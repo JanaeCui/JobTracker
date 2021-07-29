@@ -24,6 +24,7 @@
 .profileGroup{
     display: flex;
     align-items: center;
+    margin-bottom: 3rem;
 }
 .dashBoardBigPlusButton:hover{
     background-color: #724e95;
@@ -128,4 +129,23 @@
     width: 20rem;
     height: 0.4rem;
     background-color: #FFCB00;
+}
+
+
+.myBoardTitleAndAddButtonGroup{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.myBoard{
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.addBoardButton{
+    background-color: #FFFFFF;
+    color:#412468 ;
+    width: 1.02rem;
+    height: 1.02rem;
+    border-radius: 3rem;
 }
