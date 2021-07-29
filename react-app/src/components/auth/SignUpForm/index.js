@@ -61,7 +61,7 @@ const SignUpForm = () => {
   return (
     <div className={styles.outerDiv}>
       <div className={styles.nav}>
-        <img onClick={logoRouteChange} className={styles.logo} src={logo}></img>
+        <img onClick={logoRouteChange} className={styles.logo} src={logo}/>
       </div>
       <div className={styles.formDiv}>
 
@@ -95,7 +95,7 @@ const SignUpForm = () => {
                   name='username'
                   onChange={updateUsername}
                   value={username}
-                ></input>
+                />
               </div>
             </div>
             <div className={styles.email}>
@@ -110,7 +110,7 @@ const SignUpForm = () => {
                   name='email'
                   onChange={updateEmail}
                   value={email}
-                ></input>
+                />
               </div>
             </div>
             <div className={styles.password}>
@@ -126,7 +126,7 @@ const SignUpForm = () => {
                   name='password'
                   onChange={updatePassword}
                   value={password}
-                ></input>
+                />
               </div>
             </div>
             <div className={styles.password}>
@@ -143,7 +143,7 @@ const SignUpForm = () => {
                   onChange={updateRepeatPassword}
                   value={repeatPassword}
                   required={true}
-                ></input>
+                />
               </div>
             </div>
             <div className={styles.buttonDiv}>

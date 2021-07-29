@@ -6,7 +6,6 @@ import { updateUser } from '../../store/session';
 export default function ProfileName() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-//   const { updateListTitle } = useContext(storeApi);
   const allUsers = useSelector((state) => Object.values(state.session));
   console.log(allUsers[0].username)
   const name = allUsers[0].username
@@ -18,7 +17,6 @@ export default function ProfileName() {
 
   const handleOnBlur = () => {
     dispatch(updateUser(newTitle))
-    // updateListTitle(newTitle, listId);
     setOpen(false);
   };
   return (

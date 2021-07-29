@@ -11,6 +11,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import LandingPage from './components/LandingPage';
 import DashBoard from './components/DashBoard/index';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,7 +32,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path='/login' exact={true}>
-          <LoginForm />
+          <LoginForm  />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
