@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm/index';
 import SignUpForm from './components/auth/SignUpForm/index';
 import NavBar from './components/NavBar/index';
-import LogoutButton from './components/auth/LogoutButton';
+import LogoutButton from './components/auth/LogoutButton/index';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';

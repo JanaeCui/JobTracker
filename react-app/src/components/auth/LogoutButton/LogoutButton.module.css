@@ -1,0 +1,9 @@
+.LogoutButton{
+    background: none;
+    border:none;
+    color: #FFFFFF;
+    font-size: 0.96rem;
+}
+.LogoutButton:hover{
+    color: #FFCB00;
+}

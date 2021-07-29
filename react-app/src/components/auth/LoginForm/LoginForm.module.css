@@ -86,6 +86,10 @@
     color:#FFFFFF;
     margin-top: 20px;
 }
+
+.demoUser:hover{
+    color: #FFCB00;
+}
 .askAccount{
     font-size: 16px;
     color:#FFFFFF;
@@ -95,6 +99,10 @@
 .signUp{
     margin-left: 10px;
     font-weight: bold;
+}
+
+.signUp:hover{
+    color: #FFCB00;
 }
 .emailIcon{
     position: absolute;

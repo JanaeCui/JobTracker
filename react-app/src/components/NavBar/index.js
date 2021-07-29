@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { NavLink, useHistory } from "react-router-dom";
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../auth/LogoutButton/index';
 import styles from "./NavBar.module.css";
 import logo from "../../images/logo.png"
 

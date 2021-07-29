@@ -1,12 +1,16 @@
 
 import React from 'react';
 import { NavLink, useHistory } from "react-router-dom";
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../auth/LogoutButton/index';
 import ProfileName from '../ProfileName/index';
 import styles from "./DashBoard.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UilSearch } from '@iconscout/react-unicons'
 import { UilPlus } from '@iconscout/react-unicons'
+import ProfilePicture from "../ProfilePicture/index"
+import { FaRegBell } from "react-icons/fa"
+import { IoLogOutOutline } from "react-icons/io5"
+
 
 const DashBoard = () => {
 
@@ -15,8 +19,23 @@ const DashBoard = () => {
 
         <div className={`${styles.outerContainer}`}>
           <div className={`${styles.leftBar} .col-xs-6`}>
-            <LogoutButton/>
-            <ProfileName/>
+            <div className={styles.profileGroup}>
+              <ProfilePicture/>
+              <div className={styles.sayHiGroup}>
+                <div className={styles.hey}>Hey</div>
+                <ProfileName/>
+              </div>
+            </div>
+            <div className={styles.leftBarBottom}>
+              <div className={styles.alarmGroup}>
+                <FaRegBell className={styles.leftBarIcon}/>
+                <LogoutButton className={styles.AlarmButton}/>
+              </div>
+              <div className={styles.logOutGroup}>
+                <IoLogOutOutline className={styles.leftBarIcon}/>
+                <LogoutButton className={styles.logOutButton}/>
+              </div>
+            </div>
           </div>
           <div className={styles.rightPart}>
             <div className={styles.rightPartTopDiv}>

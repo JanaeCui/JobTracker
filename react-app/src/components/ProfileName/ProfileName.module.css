@@ -1,8 +1,11 @@
 .NavLink{
     text-decoration: none;
-    color: black;
+    color: #FFFFFF;
 }
 .NavLink:hover{
     text-decoration: none;
-    color: black;
+    color: #FFCB00;
+}
+.input{
+    color: #FFFFFF;
 }

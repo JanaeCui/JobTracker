@@ -1,0 +1,11 @@
+.profilePictureDiv{
+    width: 3.36rem;
+    height: 3.36rem;
+    background-color:#eae9f6 ;
+    border-radius: 3rem;
+    color: #916AB9;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 0.2rem;
+    font-size: 2rem;
+}
