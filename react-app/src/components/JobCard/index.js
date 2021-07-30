@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from "./JobCard.module.css";
 import { UilTrashAlt } from '@iconscout/react-unicons'
-import { UilPen } from '@iconscout/react-unicons'
+import { UilLink } from '@iconscout/react-unicons'
 
 function JobCard() {
 
@@ -17,7 +17,7 @@ function JobCard() {
             <div className={styles.date}>Applied at 2021 07/28 12:20</div>
         </div>
         <div className={styles.buttons}>
-            <UilPen className={styles.editButton}/>
+            <UilLink className={styles.editButton}/>
             <UilTrashAlt className={styles.deleteButton}/>
         </div>
     </div>
