@@ -1,0 +1,16 @@
+.NavLink{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+.NavLink:hover{
+    text-decoration: none;
+    color: #FFCB00;
+}
+.input{
+    color: #FFFFFF;
+}
+.originNameDiv{
+    display: flex;
+    flex-wrap: wrap;
+}

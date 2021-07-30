@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import LogoutButton from '../auth/LogoutButton/index';
 import ProfileName from '../ProfileName/index';
@@ -11,20 +12,23 @@ import ProfilePicture from "../ProfilePicture/index"
 import { FaRegBell } from "react-icons/fa"
 import { IoLogOutOutline } from "react-icons/io5"
 import BoardCard from "../BoardCard/index"
+import { getBoards } from '../../store/boards';
 
 
 const DashBoard = () => {
   const boards = useSelector((state) => Object.values(state.boards));
+  const dispatch = useDispatch();
 
   useEffect(()=>{
-    dispatchEvent(getBoards())
-  })
+    dispatch(getBoards())
+  },[dispatch])
 
   const renderBoardCard = ()=>{
-    boards.map((board)=>(
-      <BoardCard key={board.id} board={board} />
-    ))
-  }
+  return boards.map((board)=>{
+    return <BoardCard key={board.id} board={board} />
+  })
+}
+
 
   return (
 
