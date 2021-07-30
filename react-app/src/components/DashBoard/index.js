@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import LogoutButton from '../auth/LogoutButton/index';
@@ -13,11 +13,13 @@ import { FaRegBell } from "react-icons/fa"
 import { IoLogOutOutline } from "react-icons/io5"
 import BoardCard from "../BoardCard/index"
 import { getBoards } from '../../store/boards';
-
+import { useSelectedBoard } from '../../context/SelectedBoard';
 
 const DashBoard = () => {
   const boards = useSelector((state) => Object.values(state.boards));
   const dispatch = useDispatch();
+  const {selected, setSelected}= useSelectedBoard();
+
 
   useEffect(()=>{
     dispatch(getBoards())
@@ -25,7 +27,7 @@ const DashBoard = () => {
 
   const renderBoardCard = ()=>{
   return boards.map((board)=>{
-    return <BoardCard key={board.id} board={board} />
+    return <BoardCard onClick={()=> setSelected(board.id)} key={board.id} board={board}/>
   })
 }
 
