@@ -1,0 +1,66 @@
+.jobCardOuterDiv{
+    display: flex;
+    width: 20rem;
+    height: 7.4rem;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.43);
+    border-radius: 0.6rem;
+    margin: 2rem;
+
+}
+.contentDiv{
+    box-sizing: border-box;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.5rem;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 2rem;
+}
+.logoDiv{
+    box-sizing: border-box;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+.logo{
+
+    width: 1.92rem;
+    height: 1.92rem;
+    background-color:#916AB9 ;
+    border-radius: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.logoText{
+    font-size: 0.6rem;
+    color:#FFFFFF;
+}
+.positionTitle{
+    font-size: 0.96rem;
+    font-weight: bold;
+}
+
+.companyName{
+    font-size: 0.84rem;
+}
+.date{
+    font-size: 0.72rem;
+    color:#99879D;
+}
+.positionTitle, .companyName, .date{
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+}
+.deleteButton{
+    margin-left: 0.5rem;
+    color:#A0A3BD ;
+}
+.editButton{
+    color:#A0A3BD ;
+}

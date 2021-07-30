@@ -15,6 +15,7 @@ import BoardCard from "../BoardCard/index"
 import { getBoards } from '../../store/boards';
 import { postBoard } from '../../store/boards';
 import { useSelectedBoard } from '../../context/SelectedBoard';
+import JobCard from '../JobCard';
 
 const DashBoard = () => {
   const boards = useSelector((state) => Object.values(state.boards));
@@ -85,6 +86,7 @@ const handlePostBoard = async (e) => {
                 <div className={`${styles.appliedSection} .col-xs-6 .col-sm-3`}>
                   <div className={styles.applicationTitle}>APPLIED</div>
                   <div className={styles.colorUnderlineApplied}></div>
+                  <JobCard/>
                 </div>
                 <div className={`${styles.interviewedSection} .col-xs-6 .col-sm-3`}>
                   <div className={styles.applicationTitle}>INTERVIEW</div>
