@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { InputBase } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { updateBoard } from '../../store/boards';
+import { deleteBoard } from '../../store/boards';
 import { NavLink, useParams} from "react-router-dom";
 import styles from "./BoardCard.module.css";
 import { makeStyles } from '@material-ui/core/styles';
@@ -37,7 +38,14 @@ export default function BoardCard({board, onClick}) {
     dispatch(updateBoard(newTitle, board.id))
     setOpen(false);
   };
-  console.log("selected========", selected);
+
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteBoard(board.id));
+  };
+
+
   return (
     <button className={ selected !== board.id? `${styles.boardCardDiv}`: `${styles.boardCardDiv2}`} onClick={onClick}>
       <div className={styles.boardCardName}>
@@ -71,7 +79,7 @@ export default function BoardCard({board, onClick}) {
         )}
       </div>
       <div className={styles.trashBinDiv}>
-        <UilTrashAlt className={styles.trashBin}  />
+        <UilTrashAlt onClick={handleDelete} className={styles.trashBin}  />
       </div>
     </button>
   );

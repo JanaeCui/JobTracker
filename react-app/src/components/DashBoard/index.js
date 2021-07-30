@@ -13,13 +13,14 @@ import { FaRegBell } from "react-icons/fa"
 import { IoLogOutOutline } from "react-icons/io5"
 import BoardCard from "../BoardCard/index"
 import { getBoards } from '../../store/boards';
+import { postBoard } from '../../store/boards';
 import { useSelectedBoard } from '../../context/SelectedBoard';
 
 const DashBoard = () => {
   const boards = useSelector((state) => Object.values(state.boards));
   const dispatch = useDispatch();
   const {selected, setSelected}= useSelectedBoard();
-
+  const user = useSelector((state) => state.session.user);
 
   useEffect(()=>{
     dispatch(getBoards())
@@ -30,6 +31,16 @@ const DashBoard = () => {
     return <BoardCard onClick={()=> setSelected(board.id)} key={board.id} board={board}/>
   })
 }
+
+const handlePostBoard = async (e) => {
+  e.preventDefault();
+
+  const newBoard = {
+    name: "Job Search Time(XXXX) Position Title",
+    user_id: user.id,
+  };
+  const data = await dispatch(postBoard(newBoard));
+};
 
 
   return (
@@ -47,7 +58,7 @@ const DashBoard = () => {
             </div>
             <div className={styles.myBoardTitleAndAddButtonGroup}>
               <div className={styles.myBoard}>My Boards</div>
-              <UilPlus className={styles.addBoardButton}/>
+              <UilPlus onClick={handlePostBoard} className={styles.addBoardButton}/>
             </div>
             <div className={styles.boardCardsDiv}>
               {renderBoardCard()}

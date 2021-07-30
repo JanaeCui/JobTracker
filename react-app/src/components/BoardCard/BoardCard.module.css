@@ -68,11 +68,11 @@
     filter: drop-shadow(0px 0px 4px #EFF0F6);
 
 }
-/* .boardCardDiv:hover, .boardCardDiv:active, .boardCardDiv:focus, .boardCardDiv:target{
+.boardCardDiv:hover, .boardCardDiv:active, .boardCardDiv:focus, .boardCardDiv:target{
     background-color:#FFFFFF;
     color: black;
     filter: drop-shadow(0px 0px 4px #EFF0F6);
-} */
+}
 .boardCardName{
     display: flex;
     align-items: center;
