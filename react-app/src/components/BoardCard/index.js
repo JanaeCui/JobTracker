@@ -3,6 +3,7 @@ import { InputBase } from '@material-ui/core';
 import { useDispatch, useSelector } from "react-redux";
 import { updateBoard } from '../../store/boards';
 import { deleteBoard } from '../../store/boards';
+import { deleteAllJobs, getJobs } from '../../store/jobs';
 import { NavLink, useParams} from "react-router-dom";
 import styles from "./BoardCard.module.css";
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,6 +35,8 @@ export default function BoardCard({board, onClick}) {
     setNewTitle(e.target.value);
   };
 
+
+
   const handleOnBlur = () => {
     dispatch(updateBoard(newTitle, board.id))
     setOpen(false);
@@ -42,7 +45,11 @@ export default function BoardCard({board, onClick}) {
 
   const handleDelete = (e) => {
     e.preventDefault();
+
     dispatch(deleteBoard(board.id));
+    console.log("before clear")
+    dispatch(deleteAllJobs(board.id));
+    console.log("after clear")
   };
 
 

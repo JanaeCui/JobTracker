@@ -21,5 +21,6 @@ class Job(db.Model):
             'link_url': self.link_url,
             'salary': self.salary,
             'description': self.description,
-            'company_id': self.company_id
+            'company_id': self.company_id,
+            'companies': self.companies.to_dict()
         }

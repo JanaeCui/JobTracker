@@ -1,4 +1,5 @@
 .jobCardOuterDiv{
+    position: relative;
     display: flex;
     width: 20rem;
     height: 7.4rem;
@@ -9,6 +10,7 @@
 
 }
 .contentDiv{
+
     box-sizing: border-box;
     padding-top: 1rem;
     display: flex;
@@ -16,6 +18,9 @@
     padding-left: 0.5rem;
 }
 .buttons{
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
     display: flex;
     align-items: center;
     box-sizing: border-box;
@@ -26,7 +31,7 @@
     padding-top: 1rem;
     padding-left: 1rem;
 }
-.logo{
+.appliedLogo{
 
     width: 1.92rem;
     height: 1.92rem;
@@ -37,6 +42,30 @@
     align-items: center;
 
 }
+
+.interviewedLogo{
+
+    width: 1.92rem;
+    height: 1.92rem;
+    background-color:#61A5EF ;
+    border-radius: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.offeredLogo{
+
+    width: 1.92rem;
+    height: 1.92rem;
+    background-color:#87D390 ;
+    border-radius: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .logoText{
     font-size: 0.6rem;
     color:#FFFFFF;

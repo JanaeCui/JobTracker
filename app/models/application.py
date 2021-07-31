@@ -15,7 +15,11 @@ class Application(db.Model):
 
     users = db.relationship('User', back_populates='applications')
     jobs = db.relationship('Job', back_populates='applications')
-    children = db.relationship('Child', back_populates='applications')
+    children = db.relationship('Child', back_populates='applications', cascade="all, delete-orphan")
+
+    @property
+    def boards(self):
+        return [child.boards for child in self.children]
 
     def to_dict(self):
         return {
@@ -26,6 +30,7 @@ class Application(db.Model):
             'offered_date': self.offered_date,
             'rejected_date': self.rejected_date,
             'job_id': self.job_id,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'jobs': self.jobs.to_dict()
 
         }

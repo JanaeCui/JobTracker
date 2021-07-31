@@ -7,7 +7,7 @@ def seed_applications():
         state='applied', applied_date='2021-06-02 21:28:10.328-04', interviewed_date='', offered_date='', rejected_date='', job_id=1, user_id=1)
 
     application2 = Application(
-        state='interviewed', applied_date='', interviewed_date='2021-06-03 21:00:10.328-04', offered_date='', rejected_date='', job_id=2, user_id=1)
+        state='interview', applied_date='', interviewed_date='2021-06-03 21:00:10.328-04', offered_date='', rejected_date='', job_id=2, user_id=1)
     all_applications = [application1, application2]
     db.session.add_all(all_applications)
     db.session.commit()

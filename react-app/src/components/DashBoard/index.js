@@ -13,6 +13,7 @@ import { FaRegBell } from "react-icons/fa"
 import { IoLogOutOutline } from "react-icons/io5"
 import BoardCard from "../BoardCard/index"
 import { getBoards } from '../../store/boards';
+import { getJobs } from '../../store/jobs';
 import { postBoard } from '../../store/boards';
 import { useSelectedBoard } from '../../context/SelectedBoard';
 import JobCard from '../JobCard';
@@ -22,15 +23,52 @@ const DashBoard = () => {
   const dispatch = useDispatch();
   const {selected, setSelected}= useSelectedBoard();
   const user = useSelector((state) => state.session.user);
+  const applicationRelatedJobs = useSelector((state) => Object.values(state.jobs));
+  console.log("=========jobs", applicationRelatedJobs)
+  // console.log("_________", applicationRelatedJobs.map(applicationRelatedJob => applicationRelatedJob.jobs.position_name))
+  const appliedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "applied")
+  console.log("________appliedJobs", appliedJobs);
+  const interviewedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "interview")
+  const offeredJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "offered")
+  // const rejectedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "rejected")
+
 
   useEffect(()=>{
     dispatch(getBoards())
   },[dispatch])
 
+
   const renderBoardCard = ()=>{
   return boards.map((board)=>{
-    return <BoardCard onClick={()=> setSelected(board.id)} key={board.id} board={board}/>
+    return <BoardCard onClick={()=>{ dispatch(getJobs(board.id)); setSelected(board.id)}} key={board.id} board={board}/>
   })
+}
+
+const renderAppliedJobCard = ()=>{
+  if(appliedJobs){
+    return appliedJobs.map((appliedJob) =>{
+      console.log("____________appliedJob", appliedJob)
+      return <JobCard key={appliedJob.id} job={appliedJob}/>
+    })
+  }
+}
+
+const renderInterviewedJobCard = ()=>{
+  if(interviewedJobs){
+    return interviewedJobs.map((interviewedJob) =>{
+
+      return <JobCard key={interviewedJob.id} job={interviewedJob}/>
+    })
+  }
+}
+
+const renderOfferedJobCard = ()=>{
+  if(offeredJobs){
+    return offeredJobs.map((offeredJob) =>{
+
+      return <JobCard key={offeredJob.id} job={offeredJob}/>
+    })
+  }
 }
 
 const handlePostBoard = async (e) => {
@@ -47,31 +85,33 @@ const handlePostBoard = async (e) => {
   return (
 
         <div className={`${styles.outerContainer}`}>
-          <div className={`${styles.leftBar} .col-xs-6`}>
-            <div className={styles.profileGroup}>
-              <ProfilePicture/>
-              <div className={styles.sayHiGroup}>
-                <div className={styles.hey}>Hey</div>
-                <div className={styles.profileName}>
-                  <ProfileName />
+          <div className={styles.leftBarOuterDiv}>
+            <div className={`${styles.leftBar} .col-xs-6`}>
+              <div className={styles.profileGroup}>
+                <ProfilePicture/>
+                <div className={styles.sayHiGroup}>
+                  <div className={styles.hey}>Hey</div>
+                  <div className={styles.profileName}>
+                    <ProfileName />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={styles.myBoardTitleAndAddButtonGroup}>
-              <div className={styles.myBoard}>My Boards</div>
-              <UilPlus onClick={handlePostBoard} className={styles.addBoardButton}/>
-            </div>
-            <div className={styles.boardCardsDiv}>
-              {renderBoardCard()}
-            </div>
-            <div className={styles.leftBarBottom}>
-              <div className={styles.alarmGroup}>
-                <FaRegBell className={styles.leftBarIcon}/>
-                {/* <LogoutButton className={styles.AlarmButton}/> */}
+              <div className={styles.myBoardTitleAndAddButtonGroup}>
+                <div className={styles.myBoard}>My Boards</div>
+                <UilPlus onClick={handlePostBoard} className={styles.addBoardButton}/>
               </div>
-              <div className={styles.logOutGroup}>
-                <IoLogOutOutline className={styles.leftBarIcon}/>
-                <LogoutButton className={styles.logOutButton}/>
+              <div className={styles.boardCardsDiv}>
+                {renderBoardCard()}
+              </div>
+              <div className={styles.leftBarBottom}>
+                <div className={styles.alarmGroup}>
+                  <FaRegBell className={styles.leftBarIcon}/>
+                  {/* <LogoutButton className={styles.AlarmButton}/> */}
+                </div>
+                <div className={styles.logOutGroup}>
+                  <IoLogOutOutline className={styles.leftBarIcon}/>
+                  <LogoutButton className={styles.logOutButton}/>
+                </div>
               </div>
             </div>
           </div>
@@ -86,16 +126,17 @@ const handlePostBoard = async (e) => {
                 <div className={`${styles.appliedSection} .col-xs-6 .col-sm-3`}>
                   <div className={styles.applicationTitle}>APPLIED</div>
                   <div className={styles.colorUnderlineApplied}></div>
-                  <JobCard/>
+                  {renderAppliedJobCard()}
                 </div>
                 <div className={`${styles.interviewedSection} .col-xs-6 .col-sm-3`}>
                   <div className={styles.applicationTitle}>INTERVIEW</div>
                   <div className={styles.colorUnderlineInterviewed}></div>
+                  {renderInterviewedJobCard()}
                 </div>
                 <div className={`${styles.offeredSection} .col-xs-6 .col-sm-3`}>
                   <div className={styles.applicationTitle}>OFFER</div>
                   <div className={styles.colorUnderlineOffered}></div>
-
+                  {renderOfferedJobCard()}
                 </div>
                 <div className={`${styles.rejectedSection} .col-xs-6 .col-sm-3`}>
                   <div className={styles.applicationTitle}>REJECTED</div>

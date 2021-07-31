@@ -1,7 +1,8 @@
-from app.models import board
+
+from app.models import application
 from flask import Blueprint, request, jsonify
 from flask_login import current_user
-from ..models import db, Board
+from ..models import db, Board, Child, Application, Job
 
 board_route = Blueprint('boards', __name__, url_prefix='')
 
@@ -35,6 +36,10 @@ def post_board():
 @board_route.route('/api/boards/<int:id>', methods=['DELETE'])
 def delete_board(id):
     board = Board.query.get_or_404(id)
+    # children = Child.query.filter(Child.board_id == id).all()
+    # allJobs = db.session.query(Job, Application, Child).select_from(Job).join(Application).join(Child).filter(Child.board_id == id).all().delete()
+
     db.session.delete(board)
+    # db.session.delete(children)
     db.session.commit()
     return {"id": board.id}

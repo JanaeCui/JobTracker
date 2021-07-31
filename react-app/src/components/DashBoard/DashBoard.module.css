@@ -2,7 +2,10 @@
     display: flex;
     position: relative;
 
+
 }
+
+
 .dashBoardBigPlusButton{
     position: fixed;
     bottom:2rem;
@@ -35,8 +38,9 @@
     box-sizing: border-box;
     padding: 1.5rem;
     width: 17rem;
-    height: 63.05rem;
+    height: 63.1rem;
     background-color: #412468;
+    overflow-y: scroll;
 }
 
 .leftBarIcon{
@@ -44,6 +48,7 @@
     font-size: 1.5rem;
 }
 .logOutButton{
+
     margin-left: 2rem;
 }
 
@@ -52,9 +57,11 @@
 }
 
 .leftBarBottom{
-    position: absolute;
-    bottom: 1.5rem;
-    left: 1.5rem;
+
+    /* position: fixed;
+    bottom: 2rem;
+    left: 2rem; */
+    margin-top: 45rem;
 
 }
 .rightPart{

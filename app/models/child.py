@@ -15,5 +15,6 @@ class Child(db.Model):
         return {
             'id': self.id,
             'application_id': self.application_id,
-            'board_id': self.board_id
+            'board_id': self.board_id,
+            'applications': self.applications.to_dict()
         }
