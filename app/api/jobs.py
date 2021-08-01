@@ -24,6 +24,12 @@ def get_jobs(id):
     # print("+++++++++++++++allJobs", allJobs)
 
 
+@job_route.route('/api/jobs')
+def get_allJobs():
+    jobs = Job.query.all()
+    return jsonify([job.to_dict() for job in jobs])
+
+
 @job_route.route('/api/boards/<int:id>/jobs', methods=['DELETE'])
 def clear_allJobs(id):
 

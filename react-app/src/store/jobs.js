@@ -1,10 +1,13 @@
 const SET_JOB = 'jobs/SET_JOB';
+
 const CLEAR_JOB = 'jobs/CLEAR_JOB';
 
 const setJob =(jobs)=>({
     type: SET_JOB,
     jobs
 })
+
+
 
 const removeAllJobs = (jobs)=>({
   type:CLEAR_JOB,
@@ -27,6 +30,8 @@ export const getJobs = (boardId) => async (dispatch) => {
       dispatch(setJob(data));
     }
   }
+
+
 
 
   export const deleteAllJobs = (boardId) => async (dispatch) => {

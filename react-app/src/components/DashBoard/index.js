@@ -17,6 +17,7 @@ import { getJobs } from '../../store/jobs';
 import { postBoard } from '../../store/boards';
 import { useSelectedBoard } from '../../context/SelectedBoard';
 import JobCard from '../JobCard';
+import JobFormModal from '../CreateJobFormModal';
 
 const DashBoard = () => {
   const boards = useSelector((state) => Object.values(state.boards));
@@ -145,7 +146,8 @@ const handlePostBoard = async (e) => {
                 </div>
             </div>
           </div>
-          <UilPlus className={styles.dashBoardBigPlusButton}/>
+          {/* <UilPlus className={styles.dashBoardBigPlusButton}/> */}
+          <JobFormModal className={styles.dashBoardBigPlusButton}/>
         </div>
 
 

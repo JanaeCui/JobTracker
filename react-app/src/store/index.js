@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import boards from './boards'
 import jobs from './jobs'
+import allJobs from './allJobs'
 
 const rootReducer = combineReducers({
   session,
   boards,
   jobs,
+  allJobs
 });
 
 

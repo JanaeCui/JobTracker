@@ -6,10 +6,9 @@ import App from './App';
 import configureStore from './store';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import { SelectedBoardContext, SelectedBoardProvider } from './context/SelectedBoard';
+import { SelectedBoardProvider } from './context/SelectedBoard';
+import { ModalProvider } from "./context/Modal";
 
 const store = configureStore();
 
@@ -17,7 +16,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <SelectedBoardProvider>
+        <ModalProvider>
         <App />
+        </ModalProvider>
       </SelectedBoardProvider>
     </Provider>
   </React.StrictMode>,
