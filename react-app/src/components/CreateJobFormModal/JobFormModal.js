@@ -8,6 +8,13 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 // import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { getAllJobs } from "../../store/allJobs";
 import { set } from "date-fns";
+import { UilCalender } from '@iconscout/react-unicons'
+import { UilBuilding } from '@iconscout/react-unicons'
+import { UilPaperclip } from '@iconscout/react-unicons'
+import { UilLocationPoint } from '@iconscout/react-unicons'
+import { UilBag } from '@iconscout/react-unicons'
+import { UilLink } from '@iconscout/react-unicons'
+import { UilUsdCircle } from '@iconscout/react-unicons'
 
 function CreateJobForm({ setShowModal }) {
     const dispatch = useDispatch();
@@ -73,44 +80,48 @@ useEffect(()=>{
                     <div className={styles.bodyLeftPart}>
                         <div className={styles.label__container}>
                             <label className={styles.label}>Search already exited Job and prefill form</label>
-                            <Typeahead
-                            placeholder="Search here"
-                            className={styles.input}
-                            id="jobSearch"
-                            onChange={(selected) => {
-                                console.log("selected: ")
-                                console.log(selected)
+                            <div className={styles.inputDiv}>
+                                <Typeahead
+                                placeholder="Search here"
+                                className={styles.input2}
+                                id="jobSearch"
+                                onChange={(selected) => {
+                                    console.log("selected: ")
+                                    console.log(selected)
 
-                                if (selected.length > 0) {
-                                    const selectedJob = allJobs.filter(Job => +Job.id === +selected[0].id)[0]
-                                    console.log(allJobs);
-                                    console.log(selectedJob);
-                                    setComponyName(selectedJob.companies.name)
-                                    setComponyLogo(selectedJob.companies.logo_url)
-                                    setComponyLocation(selectedJob.companies.location)
-                                    setJobPosition(selectedJob.position_name)
-                                    setPostUrl(selectedJob.link_url)
-                                    setSalary(selectedJob.salary)
-                                    setNote(selectedJob.description)
-                                }
-                            }}
-                            options={options()}
-                            filterBy={['label']}
-                            />
+                                    if (selected.length > 0) {
+                                        const selectedJob = allJobs.filter(Job => +Job.id === +selected[0].id)[0]
+                                        console.log(allJobs);
+                                        console.log(selectedJob);
+                                        setComponyName(selectedJob.companies.name)
+                                        setComponyLogo(selectedJob.companies.logo_url)
+                                        setComponyLocation(selectedJob.companies.location)
+                                        setJobPosition(selectedJob.position_name)
+                                        setPostUrl(selectedJob.link_url)
+                                        setSalary(selectedJob.salary)
+                                        setNote(selectedJob.description)
+                                    }
+                                }}
+                                options={options()}
+                                filterBy={['label']}
+                                />
+                            </div>
                         </div>
 
                         <div className={styles.abel__container}>
                             <label className={styles.label}>Create date</label>
-
-                            <div className={styles.calendar_div}>
-                                <DatePicker
-                                className={styles.input}
-                                showTimeSelect
-                                selected={startDate}
-                                onChange={(date) => setStartDate(date)}
-                                timeClassName={handleColor}
-                                dateFormat="MMMM d, yyyy h:mm aa"
-                                />
+                            <div className={styles.calendar_outerDiv}>
+                                <div className={styles.calendar_div}>
+                                    <DatePicker
+                                    className={styles.input}
+                                    showTimeSelect
+                                    selected={startDate}
+                                    onChange={(date) => setStartDate(date)}
+                                    timeClassName={handleColor}
+                                    dateFormat="MMMM d, yyyy h:mm aa"
+                                    />
+                                </div>
+                                <UilCalender className={styles.calendarInputIcon}/>
                             </div>
                         </div>
 
@@ -126,6 +137,7 @@ useEffect(()=>{
                                 value={companyName}
                                 onChange={(e) => setComponyName(e.target.value)}
                                 />
+                                <UilBuilding className={styles.inputIcon}/>
                             </div>
                         </div>
 
@@ -141,6 +153,7 @@ useEffect(()=>{
                                 value={companyLogo}
                                 onChange={(e) => setComponyLogo(e.target.value)}
                                 />
+                                <UilPaperclip className={styles.inputIcon}/>
                             </div>
                         </div>
 
@@ -156,6 +169,7 @@ useEffect(()=>{
                                 value={companyLocation}
                                 onChange={(e) => setComponyLocation(e.target.value)}
                                 />
+                                <UilLocationPoint className={styles.inputIcon}/>
                             </div>
                         </div>
                     </div>
@@ -174,6 +188,7 @@ useEffect(()=>{
                                 value={jobPosition}
                                 onChange={(e) => setJobPosition(e.target.value)}
                                 />
+                                <UilBag className={styles.inputIcon2}/>
                             </div>
                         </div>
 
@@ -189,6 +204,7 @@ useEffect(()=>{
                                 value={postUrl}
                                 onChange={(e) => setPostUrl(e.target.value)}
                                 />
+                                <UilLink className={styles.inputIcon2}/>
                             </div>
                         </div>
 
@@ -204,6 +220,7 @@ useEffect(()=>{
                                 value={salary}
                                 onChange={(e) => setSalary(e.target.value)}
                                 />
+                                 <UilUsdCircle className={styles.inputIcon2}/>
                             </div>
                         </div>
 
@@ -228,7 +245,7 @@ useEffect(()=>{
                                     <option value={4}>rejected</option>
                                 </select> */}
                                 <Typeahead
-                                className={styles.input}
+                                className={styles.input2}
                                 placeholder="Select here"
                                 id="application"
                                 options={applicationOptions}
@@ -241,7 +258,7 @@ useEffect(()=>{
 
                             <div className={styles.inputDiv}>
                                 <textarea
-                                className={styles.input}
+                                className={styles.input3}
                                 name="note"
                                 type="text"
                                 value={note}
