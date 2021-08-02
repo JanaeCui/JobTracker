@@ -51,8 +51,8 @@ export default function BoardCard({board, onClick}) {
     e.preventDefault();
     e.stopPropagation();
 
-    dispatch(deleteBoard(board.id));
     dispatch(deleteAllJobs(board.id));
+    dispatch(deleteBoard(board.id));
     if(+board.id == +selected){
       setSelected("");
     }
