@@ -1,0 +1,389 @@
+/* .calendar_div > *{
+    width: 21rem;
+
+}
+.calendar_outerDiv{
+    position: relative;
+}
+.calendarInputIcon{
+    position: absolute;
+    top:0rem;
+    right: 19rem;
+    color: #666666;
+
+}
+.label_container{
+
+    height:5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+
+
+.input{
+    padding-left: 2.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100% ;
+    margin-bottom: 10px;
+    color: #666666;
+    overflow:hidden ;
+    word-break: break-all;
+
+
+}
+.input2{
+
+    width: 20.5rem;
+    height: 3rem ;
+    margin-bottom: 5px;
+    color: #666666;
+    overflow:hidden ;
+    word-break: break-all;
+
+
+}
+.input3{
+
+    text-indent: 0.5rem;
+    width: 20.5rem;
+    height: 3rem ;
+    margin-bottom: 5px;
+    color: #666666;
+    overflow:hidden ;
+    word-break: break-all;
+
+
+}
+
+
+.input:focus, input2:focus, .input3:focus {
+    outline: none !important;
+    border:1px solid #666666;
+    box-shadow: 0 0 10px #719ECE;
+  }
+
+
+.calendar_input::placeholder{
+    color: #666666;
+}
+.header{
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 78px;
+    background-color: #412468;
+
+}
+.formTitle{
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+.outerDiv{
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.label{
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.body{
+    box-sizing: border-box;
+    margin: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputDiv {
+    padding: 0px;
+    margin:0px;
+    position: relative;
+}
+.inputIcon{
+    position: absolute;
+    top:0rem;
+    right:19rem;
+    color: #666666;
+}
+.inputIcon2{
+    position: absolute;
+    top:0rem;
+    right: 19rem;
+    color: #666666;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+}
+.button{
+    margin-top: 1rem;
+    width: 325px;
+    height: 56px;
+    background-color: #916AB9;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    border:none;
+
+}
+.button:hover{
+    background-color: #7d5aa0;
+}
+.form{
+    width: 100%;
+    height: 100%;
+}
+.bodyLeftPart{
+    margin-left: 6rem;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.bodyRightPart{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.NoteOuterDiv{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 3.7rem;
+
+} */
+
+.outerDiv{
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.body{
+    padding-top: 1rem;
+    padding-left:4rem;
+    padding-right: 4rem;
+
+
+    display: grid;
+    grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: 5rem 5rem 5rem 5rem 5rem;
+    box-sizing: border-box;
+    margin: 0;
+
+    width: 100%;
+    /* justify-items: center; */
+    grid-column-gap: 2rem;
+    grid-row-gap: 0.5rem;
+
+}
+.label_container1 {
+    grid-area: label_container1 ;
+    overflow: hidden;
+
+}
+.label_container2 {
+    grid-area: label_container2 ;
+    overflow: hidden;
+}
+.label_container3 {
+    grid-area: label_container3;
+    overflow: hidden;
+}
+.label_container4 {
+    grid-area: label_container4 ;
+    overflow: hidden;
+}
+.label_container5 {
+    grid-area: label_container5 ;
+    overflow: hidden;
+}
+.label_container6 {
+    grid-area: label_container6 ;
+    overflow: hidden;
+
+}
+.label_container7 {
+    grid-area: label_container7 ;
+    overflow: hidden;
+
+}
+.label_container8 {
+    grid-area: label_container8 ;
+    overflow: hidden;
+
+}
+.label_container9{
+    grid-area: label_container9 ;
+    overflow: hidden;
+
+}
+.label{
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.input{
+
+    margin-left: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100% ;
+    margin-bottom: 10px;
+    color: #666666;
+    overflow:hidden ;
+    /* word-break: break-all; */
+
+
+}
+.input:focus{
+    outline: none !important;
+    border:1px solid #666666;
+    box-shadow: 0 0 10px #719ECE;
+    margin-left: 1.5rem;
+  }
+  .header{
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 78px;
+    background-color: #412468;
+
+}
+.formTitle{
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+.outerBody{
+    width: 100%;
+}
+
+.inputDiv, .calendar_outerDiv{
+    display: flex;
+    overflow: hidden;
+}
+.inputIcon{
+    font-size: 12px;
+}
+.logoImg{
+    border-radius: 3rem;
+    border:none;
+    object-fit: cover;
+    width: 1.92rem;
+    height: 1.92rem;
+}
+
+.pencilButton{
+    margin-top: 1rem;
+    margin-left: 41rem;
+}
+.pencilButton:hover{
+    color: #FB717E
+}
+a{
+    color: #412468;
+}
+.input_edit{
+    border-radius: 8px;
+    text-indent: 2.5rem;
+    width: 20rem;
+    height: 3rem ;
+    margin-bottom: 5px;
+    border: 1px solid #C4C4C4;
+    color: #666666;
+
+
+}
+
+
+.input_application{
+    border-radius: 8px;
+    width:20rem;
+    height: 3rem ;
+    margin-bottom: 5px;
+    color: #666666;
+}
+
+.calendar_div_edit{
+    width: 5rem;
+
+}
+.input3_edit{
+    border-radius: 8px;
+    text-indent: 1rem;
+    width: 20rem;
+    height: 3rem ;
+    margin-bottom: 5px;
+    border: 1px solid #C4C4C4;
+    color: #666666;
+}
+
+.input_edit:focus, .input3_edit:focus {
+    outline: none !important;
+    border:1px solid #666666;
+    box-shadow: 0 0 10px #719ECE;
+  }
+
+  .inputDiv_edit{
+    padding-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+.inputIcon_edit{
+    position: absolute;
+    top: 0.7rem;
+    left: 0.7rem;
+    color: #666666;
+    z-index: 1000000000;
+
+}
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+}
+.button{
+    margin-top: 1.5rem;
+    width: 325px;
+    height: 56px;
+    background-color: #916AB9;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    border:none;
+
+}
+.button:hover{
+    background-color: #7d5aa0;
+}
+.nullDiv{
+    padding-bottom: 1rem;
+}
+.label_edit{
+
+    margin-bottom: 0.5rem;
+}

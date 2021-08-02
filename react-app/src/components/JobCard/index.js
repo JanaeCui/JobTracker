@@ -15,10 +15,11 @@ function JobCard({job}) {
         <>
             <div className={styles.jobCardOuterDiv} onClick={() => setShowModal(true)} >
                 <div className={styles.logoDiv}>
-                    {job.state === "applied"? <div className={styles.appliedLogo}><span className={styles.logoText}>logo</span></div>: null}
-                    {job.state === "interview"? <div className={styles.interviewedLogo}><span className={styles.logoText}>logo</span></div>: null}
-                    {job.state === "offered"? <div className={styles.offeredLogo}><span className={styles.logoText}>logo</span></div>: null}
-                    {job.state === "rejected"? <div className={styles.rejectedLogo}><span className={styles.logoText}>logo</span></div>: null}
+                    {job.state === "applied" && job.jobs.companies.logo_url == ""? <div className={styles.appliedLogo}><span className={styles.logoText}>logo</span></div>: null}
+                    {job.state === "interview"&& job.jobs.companies.logo_url == ""? <div className={styles.interviewedLogo}><span className={styles.logoText}>logo</span></div>: null}
+                    {job.state === "offered" && job.jobs.companies.logo_url == ""? <div className={styles.offeredLogo}><span className={styles.logoText}>logo</span></div>: null}
+                    {job.state === "rejected" && job.jobs.companies.logo_url == ""? <div className={styles.rejectedLogo}><span className={styles.logoText}>logo</span></div>: null}
+                    {job.jobs.companies.logo_url ? <div className={styles.appliedLogo}><img className={styles.logoImg} src={job.jobs.companies.logo_url}/></div>: null}
                 </div>
                 <div className={styles.contentDiv}>
                     <div className={styles.positionTitle}>{job.jobs.position_name}</div>
