@@ -7,9 +7,17 @@ import { UilLink } from '@iconscout/react-unicons'
 import { format } from "date-fns";
 import { Modal } from "../../context/Modal";
 import JobInfoForm from "./JobInfoFormModal";
+import {deleteJob}  from "../../store/jobs";
 
 function JobCard({job}) {
     const [showModal, setShowModal] = useState(false);
+    const dispatch = useDispatch();
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("before fetch")
+        await dispatch(deleteJob({"applicationId": job.id, "jobId": job.jobs.id, "companyId": job.jobs.companies.id}));
+      };
 
     return (
         <>
@@ -31,7 +39,7 @@ function JobCard({job}) {
                 </div>
                 <div className={styles.buttons}>
                     <UilLink className={styles.editButton}/>
-                    <UilTrashAlt className={styles.deleteButton}/>
+                    <UilTrashAlt onClick={handleDelete} className={styles.deleteButton}/>
                 </div>
             </div>
             {showModal && (

@@ -92,7 +92,7 @@ const handlePostBoard = async (e) => {
   e.preventDefault();
 
   const newBoard = {
-    name: "Job Search Time(XXXX) Position Title",
+    name: "Double Click to change Title!!!",
     user_id: user.id,
   };
   const data = await dispatch(postBoard(newBoard));

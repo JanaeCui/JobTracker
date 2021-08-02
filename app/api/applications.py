@@ -106,3 +106,19 @@ def put_job():
             formattedField = field.replace('_', ' ').replace(' id', '').capitalize()
             errorMessages.append(f'{formattedField} {formattedErr}')
     return{'errors': errorMessages}
+
+
+@application_route.route('/api/applications/delete/', methods=['DELETE'])
+def delete_board():
+    application = Application.query.filter(Application.id == request.json["applicationId"]).one()
+    company = Company.query.filter(Company.id == request.json["companyId"]).one()
+    job = Job.query.filter(Job.id == request.json["jobId"]).one()
+    child = Child.query.filter(Child.application_id == application.id).one()
+
+    db.session.delete(child)
+    db.session.delete(application)
+    db.session.delete(job)
+    db.session.delete(company)
+    # db.session.delete(children)
+    db.session.commit()
+    return {"id": application.id}

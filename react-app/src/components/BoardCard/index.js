@@ -50,8 +50,7 @@ export default function BoardCard({board, onClick}) {
   const handleDelete = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("selected______", selected);
-    console.log("boardId______", board.id);
+
     dispatch(deleteBoard(board.id));
     dispatch(deleteAllJobs(board.id));
     if(+board.id == +selected){
@@ -84,7 +83,7 @@ export default function BoardCard({board, onClick}) {
             <NavLink
               className={styles.NavLink}
               to ="#"
-              onClick={() => setOpen(!open)}
+              onDoubleClick={() => setOpen(!open)}
             >
               {board.name}
 
