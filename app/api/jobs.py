@@ -32,7 +32,7 @@ def get_allJobs():
 
 @job_route.route('/api/boards/<int:id>/jobs', methods=['DELETE'])
 def clear_allJobs(id):
-
+    print("=========id", id)
     board = Board.query.get(id)
     print("---------", board)
     allJobs = [application.to_dict() for application in board.applications]

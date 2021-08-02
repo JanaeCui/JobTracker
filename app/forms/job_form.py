@@ -12,7 +12,7 @@ class JobForm(FlaskForm):
     link_url = StringField('link_url')
     salary = StringField('salary')
     description = StringField('description')
-    state = StringField('state')
+    state = StringField('state', validators=[DataRequired()])
     date = StringField('date')
     selected_board_id = StringField('selected_board_id', validators=[DataRequired()])
     company_id = StringField('company_id')

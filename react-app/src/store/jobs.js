@@ -66,6 +66,7 @@ export const postJob = (job) => async (dispatch) => {
 
 
   export const deleteAllJobs = (boardId) => async (dispatch) => {
+
     const res = await fetch(`/api/boards/${boardId}/jobs`, {
         method: 'DELETE'
     });
@@ -91,17 +92,16 @@ export const postJob = (job) => async (dispatch) => {
   }
 
   export const deleteJob = ({applicationId, jobId, companyId}) => async (dispatch) => {
-    console.log("deleteJob!!!")
+
     const res = await fetch(`/api/applications/delete/`, {
         method: 'DELETE',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({applicationId, jobId, companyId})
     });
-    console.log("after fetch remove job : ")
+
 
     if (res.ok) {
         const data = await res.json();
-        console.log("remove job data: ", data)
         dispatch(removeJob(data))
         return data;
     }

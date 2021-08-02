@@ -15,7 +15,6 @@ function JobCard({job}) {
     const handleDelete = async (e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log("before fetch")
         await dispatch(deleteJob({"applicationId": job.id, "jobId": job.jobs.id, "companyId": job.jobs.companies.id}));
       };
 

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { NavLink, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import LogoutButton from '../auth/LogoutButton/index';
 import styles from "./NavBar.module.css";
 import logo from "../../images/logo.png"
@@ -8,6 +9,7 @@ import logo from "../../images/logo.png"
 
 
 const NavBar = () => {
+  const user = useSelector((state) => state.session.user);
 
   const history = useHistory();
   const routeChange = () =>{
@@ -38,8 +40,8 @@ const NavBar = () => {
           {/* <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink> */}
-          <button onClick={logInRouteChange} activeClassName='active' className={styles.logInButton}>Log In</button>
-          <button onClick={signUpRouteChange} activeClassName='active' className={styles.signUpButton}>Sign Up</button>
+          {user? null: <button onClick={logInRouteChange} activeClassName='active' className={styles.logInButton}>Log In</button> }
+          {user? null: <button onClick={signUpRouteChange} activeClassName='active' className={styles.signUpButton}>Sign Up</button>}
         </div>
         {/* <div>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
