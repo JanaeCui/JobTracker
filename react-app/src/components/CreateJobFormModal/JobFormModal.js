@@ -289,7 +289,13 @@ useEffect(()=>{
                                 id="application"
                                 options={applicationOptions}
                                 value={applicationState}
-                                onChange={(selected) => setApplicationState(selected[0].label)}
+                                onChange={(selected) => {
+                                    if (selected.length > 0) {
+                                        setApplicationState(selected[0].label)
+                                    } else {
+                                        setApplicationState("")
+                                    }
+                                }}
                                 />
                             </div>
                         </div>
