@@ -37,8 +37,13 @@ export default function BoardCard({board, onClick}) {
 
 
 
-  const handleOnBlur = () => {
-    dispatch(updateBoard(newTitle, board.id))
+  const handleOnBlur = (e) => {
+
+    if (e.target.value !== "" ) {
+      dispatch(updateBoard(newTitle, board.id))
+    } else {
+      setNewTitle(board.name);
+    }
     setOpen(false);
   };
 

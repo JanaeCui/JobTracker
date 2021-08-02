@@ -1,6 +1,7 @@
 const SET_JOB = 'jobs/SET_JOB';
 const POST_JOB= 'jobs/POST_JOB';
 const CLEAR_JOB = 'jobs/CLEAR_JOB';
+const EDIT_JOB = 'jobs/EDIT_JOB';
 
 const setJob =(jobs)=>({
     type: SET_JOB,
@@ -15,6 +16,11 @@ const createJob = (job) => ({
 const removeAllJobs = (jobs)=>({
   type:CLEAR_JOB,
   jobs
+})
+
+const editJob = (job) =>({
+  type: EDIT_JOB,
+  job
 })
 
 const initialState = {};
@@ -65,6 +71,19 @@ export const postJob = (job) => async (dispatch) => {
     }
   }
 
+  export const updateJob = (application) => async (dispatch) => {
+    console.log()
+    const res = await fetch(`/api/applications/edit/`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(application)
+    });
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(editJob(data));
+      return data
+   }
+  }
 
 
   export default function reducer(state = initialState, action) {
@@ -86,6 +105,11 @@ export const postJob = (job) => async (dispatch) => {
           delete newObj[job.id];
         })
         return newObj
+      case EDIT_JOB:
+        return {
+            ...state,
+            [action.job.id] : action.job
+        }
       default:
         return state;
     }

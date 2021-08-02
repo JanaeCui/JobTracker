@@ -32,8 +32,13 @@ export default function ProfileName() {
     setNewTitle(e.target.value);
   };
 
-  const handleOnBlur = () => {
-    dispatch(updateUser(newTitle))
+  const handleOnBlur = (e) => {
+    if (e.target.value !== ""){
+      dispatch(updateUser(newTitle))
+    }else {
+      setNewTitle(name)
+    }
+
     setOpen(false);
   };
   return (

@@ -1,11 +1,10 @@
 import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import styles from "../../components/CreateJobFormModal/JobFormModal.module.css"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Typeahead } from 'react-bootstrap-typeahead';
-// import 'react-bootstrap-typeahead/css/Typeahead.css';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { getAllJobs } from "../../store/allJobs";
 import { postJob } from "../../store/jobs";
 import { set } from "date-fns";
@@ -92,7 +91,7 @@ function CreateJobForm({ setShowModal }) {
             if (data.errors) {
                 return data;
             }
-            
+
             const newJobData = await dispatch(postJob(data.application))
         }
 
