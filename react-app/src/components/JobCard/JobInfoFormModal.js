@@ -140,7 +140,7 @@ function JobInfoForm({setShowModal, job}){
 
                         <div className={newStyles.inputDiv}>
                             <UilLink className={newStyles.inputIcon}/>
-                            <a href={job.jobs.link_url} className={newStyles.input}>Job Link </a>
+                            <a href={job.jobs.link_url} target="_blank" className={newStyles.input_job_link}>Job Link </a>
                         </div>
                     </div>
 

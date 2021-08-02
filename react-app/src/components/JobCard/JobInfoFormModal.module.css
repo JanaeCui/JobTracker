@@ -304,9 +304,14 @@
 .pencilButton:hover{
     color: #FB717E
 }
-a{
+.input_job_link{
+    color: #666666;
+    padding-left: 1rem;
+}
+a:hover{
     color: #412468;
 }
+
 .input_edit{
     border-radius: 8px;
     text-indent: 2.5rem;
