@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Typeahead } from 'react-bootstrap-typeahead';
 // import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { getAllJobs } from "../../store/allJobs";
+import { postJob } from "../../store/jobs";
 import { set } from "date-fns";
 import { UilCalender } from '@iconscout/react-unicons'
 import { UilBuilding } from '@iconscout/react-unicons'
@@ -16,18 +17,22 @@ import { UilBag } from '@iconscout/react-unicons'
 import { UilLink } from '@iconscout/react-unicons'
 import { UilUsdCircle } from '@iconscout/react-unicons'
 
+import { useSelectedBoard } from '../../context/SelectedBoard';
+
 function CreateJobForm({ setShowModal }) {
     const dispatch = useDispatch();
+    const {selected, setSelected}= useSelectedBoard();
 
-    const [startDate, setStartDate] = useState(new Date());
     const [companyName, setComponyName] = useState("");
     const [companyLogo, setComponyLogo] = useState("");
     const [companyLocation, setComponyLocation] = useState("");
     const [jobPosition, setJobPosition] = useState("");
     const [postUrl, setPostUrl] = useState("");
     const [salary, setSalary] = useState("");
-    const [applicationState, setApplicationState] = useState("");
+    const [applicationState, setApplicationState] = useState("")
+    const [applicationStateDate, setApplicationStateDate] = useState(new Date());
     const [note, setNote] = useState("");
+    const user = useSelector((state) => state.session.user);
 
     let handleColor = (time) => {
         return time.getHours() > 12 ? "text-success" : "text-error";
@@ -36,6 +41,61 @@ function CreateJobForm({ setShowModal }) {
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
+        // const newCompany = {
+        //     name: companyName,
+        //     location: companyLocation,
+        //     logo_url: companyLogo
+        // }
+        // const newCompanyData = await dispatch(postCompany(newCompany));
+
+        // const newJob = {
+        //     position_name: jobPosition,
+        //     link_url: postUrl,
+        //     salary,
+        //     description: note,
+        //     company_id: newCompanyData.id
+        // }
+        // const newJobData = await dispatch(postJob(newJob))
+
+        // const newApplication = {
+        //     state: applicationState,
+        //     applied_date: applicationStateDate,
+        //     interviewed_date: applicationStateDate,
+        //     offered_date: applicationStateDate,
+        //     rejected_date: applicationStateDate,
+        //     job_id: newJobData.id,
+        //     user_id = user.id
+        // }
+        const newApplication = {
+            name: companyName,
+            location: companyLocation,
+            logo_url: companyLogo,
+
+            position_name: jobPosition,
+            link_url: postUrl,
+            salary,
+            description: note,
+
+            state: applicationState,
+            date: applicationStateDate,
+            selected_board_id: selected
+        }
+
+        const res = await fetch(`/api/applications/post/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newApplication)
+        });
+
+        if (res.ok) {
+            const data = await res.json();
+            if (data.errors) {
+                return data;
+            }
+            
+            const newJobData = await dispatch(postJob(data.application))
+        }
+
         setShowModal(false);
     }
 
@@ -86,13 +146,9 @@ useEffect(()=>{
                                 className={styles.input2}
                                 id="jobSearch"
                                 onChange={(selected) => {
-                                    console.log("selected: ")
-                                    console.log(selected)
 
                                     if (selected.length > 0) {
                                         const selectedJob = allJobs.filter(Job => +Job.id === +selected[0].id)[0]
-                                        console.log(allJobs);
-                                        console.log(selectedJob);
                                         setComponyName(selectedJob.companies.name)
                                         setComponyLogo(selectedJob.companies.logo_url)
                                         setComponyLocation(selectedJob.companies.location)
@@ -105,23 +161,6 @@ useEffect(()=>{
                                 options={options()}
                                 filterBy={['label']}
                                 />
-                            </div>
-                        </div>
-
-                        <div className={styles.abel__container}>
-                            <label className={styles.label}>Create date</label>
-                            <div className={styles.calendar_outerDiv}>
-                                <div className={styles.calendar_div}>
-                                    <DatePicker
-                                    className={styles.input}
-                                    showTimeSelect
-                                    selected={startDate}
-                                    onChange={(date) => setStartDate(date)}
-                                    timeClassName={handleColor}
-                                    dateFormat="MMMM d, yyyy h:mm aa"
-                                    />
-                                </div>
-                                <UilCalender className={styles.calendarInputIcon}/>
                             </div>
                         </div>
 
@@ -172,10 +211,7 @@ useEffect(()=>{
                                 <UilLocationPoint className={styles.inputIcon}/>
                             </div>
                         </div>
-                    </div>
 
-
-                    <div className={styles.bodyRightPart}>
                         <div className={styles.label__container}>
                             <label className={styles.label}>Job position</label>
 
@@ -188,9 +224,13 @@ useEffect(()=>{
                                 value={jobPosition}
                                 onChange={(e) => setJobPosition(e.target.value)}
                                 />
-                                <UilBag className={styles.inputIcon2}/>
+                                <UilBag className={styles.inputIcon}/>
                             </div>
                         </div>
+
+                    </div>
+
+                    <div className={styles.bodyRightPart}>
 
                         <div className={styles.label__container}>
                             <label className={styles.label}>Post URL</label>
@@ -249,7 +289,26 @@ useEffect(()=>{
                                 placeholder="Select here"
                                 id="application"
                                 options={applicationOptions}
+                                value={applicationState}
+                                onChange={(selected) => setApplicationState(selected[0].label)}
                                 />
+                            </div>
+                        </div>
+
+                        <div className={styles.abel__container}>
+                            <label className={styles.label}>Applied/Interview/offered/rejected date</label>
+                            <div className={styles.calendar_outerDiv}>
+                                <div className={styles.calendar_div}>
+                                    <DatePicker
+                                    className={styles.input}
+                                    showTimeSelect
+                                    selected={applicationStateDate}
+                                    onChange={(date) => setApplicationStateDate(date)}
+                                    timeClassName={handleColor}
+                                    dateFormat="MMMM d, yyyy h:mm aa"
+                                    />
+                                </div>
+                                <UilCalender className={styles.calendarInputIcon}/>
                             </div>
                         </div>
 

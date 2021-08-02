@@ -45,11 +45,14 @@ export default function BoardCard({board, onClick}) {
 
   const handleDelete = (e) => {
     e.preventDefault();
-
+    e.stopPropagation();
+    console.log("selected______", selected);
+    console.log("boardId______", board.id);
     dispatch(deleteBoard(board.id));
-    console.log("before clear")
     dispatch(deleteAllJobs(board.id));
-    console.log("after clear")
+    if(+board.id == +selected){
+      setSelected("");
+    }
   };
 
 

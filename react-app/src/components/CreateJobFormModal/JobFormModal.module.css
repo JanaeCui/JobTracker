@@ -15,7 +15,7 @@
 }
 
 .calendar_div > *{
-    width: 368px;
+    width: 21rem;
 
 }
 .calendar_outerDiv{
@@ -23,8 +23,8 @@
 }
 .calendarInputIcon{
     position: absolute;
-    top:0.5rem;
-    right: 20.7rem;
+    top:0.8rem;
+    right: 18.7rem;
     color: #666666;
 
 }
@@ -32,8 +32,8 @@
 .input{
     border-radius: 8px;
     text-indent: 2.5rem;
-    width: 20rem;
-    height: 2.5rem ;
+    width: 20.5rem;
+    height: 3rem ;
     margin-bottom: 5px;
     border: 1px solid #C4C4C4;
     color: #666666;
@@ -43,8 +43,8 @@
 .input2{
     border-radius: 8px;
     /* text-indent: 0.5rem; */
-    width: 20rem;
-    height: 2.5rem ;
+    width: 20.5rem;
+    height: 3rem ;
     margin-bottom: 5px;
     border: 1px solid #C4C4C4;
     color: #666666;
@@ -54,8 +54,8 @@
 .input3{
     border-radius: 8px;
     text-indent: 0.5rem;
-    width: 20rem;
-    height: 2.5rem ;
+    width: 20.5rem;
+    height: 3rem ;
     margin-bottom: 5px;
     border: 1px solid #C4C4C4;
     color: #666666;
@@ -97,6 +97,7 @@
     justify-content: center;
 }
 .label{
+
     margin-bottom: 0.5rem;
 }
 .body{
@@ -104,7 +105,7 @@
     margin: 0;
     padding-left: 0px;
     padding-right: 0px;
-    padding-top: 30px;
+    padding-top: 25px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -121,14 +122,14 @@
 }
 .inputIcon{
     position: absolute;
-    top:0.5rem;
-    right: 20.7rem;
+    top:0.8rem;
+    right: 18.2rem;
     color: #666666;
 }
 .inputIcon2{
     position: absolute;
-    top:0.5rem;
-    right: 17.7rem;
+    top:0.8rem;
+    right: 18.7rem;
     color: #666666;
 }
 
@@ -137,7 +138,7 @@
     justify-content: center;
 }
 .button{
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 325px;
     height: 56px;
     background-color: #916AB9;
@@ -154,4 +155,7 @@
 .form{
     width: 100%;
     height: 100%;
+}
+.bodyLeftPart{
+    padding-right: 2rem;
 }

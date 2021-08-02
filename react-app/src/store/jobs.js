@@ -1,5 +1,5 @@
 const SET_JOB = 'jobs/SET_JOB';
-
+const POST_JOB= 'jobs/POST_JOB';
 const CLEAR_JOB = 'jobs/CLEAR_JOB';
 
 const setJob =(jobs)=>({
@@ -7,7 +7,10 @@ const setJob =(jobs)=>({
     jobs
 })
 
-
+const createJob = (job) => ({
+  type: POST_JOB,
+  job
+})
 
 const removeAllJobs = (jobs)=>({
   type:CLEAR_JOB,
@@ -31,7 +34,23 @@ export const getJobs = (boardId) => async (dispatch) => {
     }
   }
 
-
+export const postJob = (job) => async (dispatch) => {
+    // const res = await fetch(`/api/jobs/post/`, {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(job)
+    // });
+    // if (res.ok) {
+    //     const data = await res.json();
+    //     if (data.errors) {
+    //         return data;
+    //     }
+    //     dispatch(createJob(data));
+    //     return data;
+    // }
+    dispatch(createJob(job));
+    return job;
+}
 
 
   export const deleteAllJobs = (boardId) => async (dispatch) => {
@@ -56,6 +75,11 @@ export const getJobs = (boardId) => async (dispatch) => {
             allJobs[job.id] = job
         })
         return allJobs
+      case POST_JOB:
+        return {
+            ...state,
+            [action.job.id] : action.job
+        }
       case CLEAR_JOB:
         const newObj = {...state};
         action.jobs.forEach(job => {

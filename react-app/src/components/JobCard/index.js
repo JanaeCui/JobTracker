@@ -15,6 +15,7 @@ function JobCard({job}) {
                 {job.state === "applied"? <div className={styles.appliedLogo}><span className={styles.logoText}>logo</span></div>: null}
                 {job.state === "interview"? <div className={styles.interviewedLogo}><span className={styles.logoText}>logo</span></div>: null}
                 {job.state === "offered"? <div className={styles.offeredLogo}><span className={styles.logoText}>logo</span></div>: null}
+                {job.state === "rejected"? <div className={styles.rejectedLogo}><span className={styles.logoText}>logo</span></div>: null}
             </div>
             <div className={styles.contentDiv}>
                 <div className={styles.positionTitle}>{job.jobs.position_name}</div>
@@ -22,6 +23,7 @@ function JobCard({job}) {
                 {job.state === "applied"? <div className={styles.date}>{job.state} at {format(Date.parse(job.applied_date), "yyyy-MM-dd")}</div>: null}
                 {job.state === "interview"? <div className={styles.date}>{job.state} at {format(Date.parse(job.interviewed_date), "yyyy-MM-dd")}</div>: null}
                 {job.state === "offered"? <div className={styles.date}>{job.state} at {format(Date.parse(job.offered_date), "yyyy-MM-dd")}</div>: null}
+                {job.state === "rejected"? <div className={styles.date}>{job.state} at {format(Date.parse(job.rejected_date), "yyyy-MM-dd")}</div>: null}
             </div>
             <div className={styles.buttons}>
                 <UilLink className={styles.editButton}/>

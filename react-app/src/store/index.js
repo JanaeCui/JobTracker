@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   session,
   boards,
   jobs,
-  allJobs
+  allJobs,
 });
 
 

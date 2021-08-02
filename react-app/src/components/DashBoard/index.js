@@ -25,30 +25,35 @@ const DashBoard = () => {
   const {selected, setSelected}= useSelectedBoard();
   const user = useSelector((state) => state.session.user);
   const applicationRelatedJobs = useSelector((state) => Object.values(state.jobs));
-  console.log("=========jobs", applicationRelatedJobs)
+
   // console.log("_________", applicationRelatedJobs.map(applicationRelatedJob => applicationRelatedJob.jobs.position_name))
   const appliedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "applied")
-  console.log("________appliedJobs", appliedJobs);
+
   const interviewedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "interview")
+
   const offeredJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "offered")
   // const rejectedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "rejected")
 
+  const rejectedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "rejected")
 
   useEffect(()=>{
     dispatch(getBoards())
+    if (selected) {
+      dispatch(getJobs(selected))
+    }
   },[dispatch])
 
 
   const renderBoardCard = ()=>{
   return boards.map((board)=>{
-    return <BoardCard onClick={()=>{ dispatch(getJobs(board.id)); setSelected(board.id)}} key={board.id} board={board}/>
+    return <BoardCard onClick={()=>{ dispatch(getJobs(board.id)); setSelected(board.id); console.log("setSelected+++++++++", board.id);}} key={board.id} board={board}/>
   })
 }
 
 const renderAppliedJobCard = ()=>{
   if(appliedJobs){
     return appliedJobs.map((appliedJob) =>{
-      console.log("____________appliedJob", appliedJob)
+
       return <JobCard key={appliedJob.id} job={appliedJob}/>
     })
   }
@@ -56,6 +61,7 @@ const renderAppliedJobCard = ()=>{
 
 const renderInterviewedJobCard = ()=>{
   if(interviewedJobs){
+
     return interviewedJobs.map((interviewedJob) =>{
 
       return <JobCard key={interviewedJob.id} job={interviewedJob}/>
@@ -71,6 +77,16 @@ const renderOfferedJobCard = ()=>{
     })
   }
 }
+
+const renderRejectedJobCard = ()=>{
+  if(rejectedJobs){
+    return rejectedJobs.map((rejectedJob) =>{
+
+      return <JobCard key={rejectedJob.id} job={rejectedJob}/>
+    })
+  }
+}
+
 
 const handlePostBoard = async (e) => {
   e.preventDefault();
@@ -125,24 +141,32 @@ const handlePostBoard = async (e) => {
             </div>
             <div className={styles.rightPartBottomDiv}>
                 <div className={`${styles.appliedSection} .col-xs-6 .col-sm-3`}>
-                  <div className={styles.applicationTitle}>APPLIED</div>
-                  <div className={styles.colorUnderlineApplied}></div>
+                  <div className={styles.colorAndTitle}>
+                    <div className={styles.applicationTitle}>APPLIED</div>
+                    <div className={styles.colorUnderlineApplied}></div>
+                  </div>
                   {renderAppliedJobCard()}
                 </div>
                 <div className={`${styles.interviewedSection} .col-xs-6 .col-sm-3`}>
-                  <div className={styles.applicationTitle}>INTERVIEW</div>
-                  <div className={styles.colorUnderlineInterviewed}></div>
+                  <div className={styles.colorAndTitle}>
+                    <div className={styles.applicationTitle}>INTERVIEW</div>
+                    <div className={styles.colorUnderlineInterviewed}></div>
+                  </div>
                   {renderInterviewedJobCard()}
                 </div>
                 <div className={`${styles.offeredSection} .col-xs-6 .col-sm-3`}>
-                  <div className={styles.applicationTitle}>OFFER</div>
-                  <div className={styles.colorUnderlineOffered}></div>
+                  <div className={styles.colorAndTitle}>
+                    <div className={styles.applicationTitle}>OFFER</div>
+                    <div className={styles.colorUnderlineOffered}></div>
+                  </div>
                   {renderOfferedJobCard()}
                 </div>
                 <div className={`${styles.rejectedSection} .col-xs-6 .col-sm-3`}>
-                  <div className={styles.applicationTitle}>REJECTED</div>
-                  <div className={styles.colorUnderlineRejected}></div>
-
+                  <div className={styles.colorAndTitle}>
+                    <div className={styles.applicationTitle}>REJECTED</div>
+                    <div className={styles.colorUnderlineRejected}></div>
+                  </div>
+                  {renderRejectedJobCard()}
                 </div>
             </div>
           </div>
