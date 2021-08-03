@@ -1,0 +1,18 @@
+.dropdown{
+    margin-top: 0.5rem;
+    display: flex;
+    width: 14rem;
+    justify-content: space-between;
+}
+.button{
+    margin: 0;
+    padding: 0;
+    /* height: 2rem;
+    width: 10rem; */
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: underline;
+    /* border-radius: 8px;
+    background-color: #916AB9; */
+    color: #916AB9;
+}

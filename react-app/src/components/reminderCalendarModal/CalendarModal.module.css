@@ -1,0 +1,24 @@
+.leftBarIcon{
+    font-size: 20px;
+    color: #FFFFFF;
+}
+.calendarDiv{
+    max-height: 600px;
+
+}
+.calendar{
+    width: 600px;
+}
+
+.calendarWrapper {
+    width: 600px;
+    height: 500px;
+  }
+
+.dayCell{
+    height: 20px;
+    width: 50px;
+}
+a{
+    color: #666666;
+}

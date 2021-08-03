@@ -15,7 +15,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { UilPen } from '@iconscout/react-unicons';
 import { useSelectedBoard } from '../../context/SelectedBoard';
 import {updateJob} from "../../store/jobs"
-import { NavLink} from "react-router-dom";
+
+import "@culturehq/add-to-calendar/dist/styles.css"
+import { format } from "date-fns";
+
+import moment from 'moment';
+import ReactAddToCalendarHOC from 'react-add-to-calendar-hoc';
+import Button from './MyButtonComponent';
+import Dropdown from './MyDropdownComponent';
 
 
 function JobInfoForm({setShowModal, job}){
@@ -79,11 +86,45 @@ function JobInfoForm({setShowModal, job}){
         setEditable(false)
     }
 
+
+//---------------------------------------------add to calendar---------------------------------
+
+let event = {
+    title: job.jobs.position_name,
+    description: job.jobs.description,
+    location: job.jobs.companies.location,
+}
+if(job.state === "applied" ){
+    // event.startsAt = `${format(Date.parse(job.applied_date), "yyyyMMddTHHmmss")}Z`
+    // event.endsAt = `${format(Date.parse(job.applied_date), "yyyyMMddTHHmmss")}Z`
+    event.startDatetime = `${format(Date.parse(job.applied_date), "yyyyMMdd")}Z`
+    event.endDatetime = `${format(Date.parse(job.applied_date), "yyyyMMdd")}Z`
+    event.duration = 0
+}
+else if(job.state === "interview" ){
+    event.startDatetime = `${format(Date.parse(job.interviewed_date), "yyyyMMdd")}Z`
+    event.endDatetime = `${format(Date.parse(job.interviewed_date), "yyyyMMdd")}Z`
+    event.duration = 0
+}
+else if(job.state === "offered" ){
+    event.startDatetime = `${format(Date.parse(job.offered_date), "yyyyMMdd")}Z`
+    event.endDatetime = `${format(Date.parse(job.offered_date), "yyyyMMdd")}Z`
+    event.duration = 0
+}
+else if(job.state === "rejected" ){
+    event.startDatetime = `${format(Date.parse(job.rejected_date), "yyyyMMdd")}Z`
+    event.endDatetime = `${format(Date.parse(job.rejected_date), "yyyyMMdd")}Z`
+    event.duration = 0
+}
+
+  const AddToCalendar = ReactAddToCalendarHOC(Button, Dropdown);
+
     const textDisplay =()=>{
 
         return (
         <div className={newStyles.outerBody}>
             <div className={newStyles.body}>
+
                 {/* <div className={newStyles.bodyLeftPart}> */}
                     <div className={newStyles.label__container1}>
                         <label className={newStyles.label}>Company name</label>
@@ -237,15 +278,19 @@ function JobInfoForm({setShowModal, job}){
                         </div>
                     </div>
 
+                    <div className={newStyles.NoteOuterDiv}>
+                        <div className={newStyles.label__container9}>
+                            {/* <label className={newStyles.label}>Add To Calendar</label> */}
+
+                            <AddToCalendar
+                                event={event}
+                                />
+                        </div>
+                    </div>
+
                 {/* </div> */}
             </div>
 
-
-            {/* <div className={newStyles.buttonDiv}>
-                <button className={newStyles.button} type="submit">
-                    Save
-                </button>
-            </div> */}
         </div>
 
         )
@@ -439,14 +484,17 @@ function JobInfoForm({setShowModal, job}){
 
 
     return (
+
         <div className={newStyles.outerDiv}>
             <div className={newStyles.header}>
                 <div className={newStyles.formTitle}>
                     Job Information
                 </div>
+
             </div>{
                 !editable?
                 <>
+
                 <div className={newStyles.pencilButtonDiv}>
                     <UilPen className={newStyles.pencilButton} onClick={()=>{setEditable(true)}} />
                 </div>

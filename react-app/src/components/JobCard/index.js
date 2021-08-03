@@ -9,6 +9,9 @@ import { Modal } from "../../context/Modal";
 import JobInfoForm from "./JobInfoFormModal";
 import {deleteJob}  from "../../store/jobs";
 import { Draggable } from 'react-beautiful-dnd';
+import { NavLink} from "react-router-dom";
+import AddToCalendar from '@culturehq/add-to-calendar';
+import "@culturehq/add-to-calendar/dist/styles.css"
 
 function JobCard({job, index}) {
     const [showModal, setShowModal] = useState(false);
@@ -49,9 +52,12 @@ function JobCard({job, index}) {
                     </div>
                 </div>
                 {showModal && (
+                    <>
                     <Modal onClose={() => setShowModal(false)}>
+
                     <JobInfoForm setShowModal={setShowModal} job={job}/>
                     </Modal>
+                    </>
                 )}
             </div>
             )}

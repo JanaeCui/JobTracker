@@ -18,6 +18,7 @@ import { postBoard } from '../../store/boards';
 import { useSelectedBoard } from '../../context/SelectedBoard';
 import JobCard from '../JobCard';
 import JobFormModal from '../CreateJobFormModal';
+import CalendarModal from '../reminderCalendarModal';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import {updateJob} from "../../store/jobs"
 
@@ -161,8 +162,9 @@ await dispatch(updateJob(newApplication))
               </div>
               <div className={styles.leftBarBottom}>
                 <div className={styles.alarmGroup}>
-                  <FaRegBell className={styles.leftBarIcon}/>
-                  {/* <LogoutButton className={styles.AlarmButton}/> */}
+                  {/* <FaRegBell className={styles.leftBarIcon}/> */}
+                  <CalendarModal className={styles.leftBarIcon} appliedJobs={appliedJobs} interviewedJobs={interviewedJobs} offeredJobs={offeredJobs} rejectedJobs={rejectedJobs} />
+
                 </div>
                 <div className={styles.logOutGroup}>
                   <IoLogOutOutline className={styles.leftBarIcon}/>

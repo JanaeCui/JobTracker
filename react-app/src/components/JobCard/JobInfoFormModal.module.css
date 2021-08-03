@@ -183,8 +183,8 @@
 
 .body{
     padding-top: 1rem;
-    padding-left:4rem;
-    padding-right: 4rem;
+    padding-left:3rem;
+    padding-right: 3rem;
 
 
     display: grid;
@@ -315,7 +315,7 @@ a:hover{
 .input_edit{
     border-radius: 8px;
     text-indent: 2.5rem;
-    width: 20rem;
+    width: 21rem;
     height: 3rem ;
     margin-bottom: 5px;
     border: 1px solid #C4C4C4;
@@ -327,20 +327,20 @@ a:hover{
 
 .input_application{
     border-radius: 8px;
-    width:20rem;
+    width:21rem;
     height: 3rem ;
     margin-bottom: 5px;
     color: #666666;
 }
 
-.calendar_div_edit{
-    width: 5rem;
+.calendar_div_edit > *{
+    width: 21rem;
 
 }
 .input3_edit{
     border-radius: 8px;
     text-indent: 1rem;
-    width: 20rem;
+    width: 21rem;
     height: 3rem ;
     margin-bottom: 5px;
     border: 1px solid #C4C4C4;
@@ -356,7 +356,6 @@ a:hover{
   .inputDiv_edit{
     padding-bottom: 1rem;
     position: relative;
-    overflow: hidden;
 }
 .inputIcon_edit{
     position: absolute;
@@ -391,4 +390,7 @@ a:hover{
 .label_edit{
 
     margin-bottom: 0.5rem;
+}
+.addToCalendar{
+    z-index: 10000000000000000;
 }
