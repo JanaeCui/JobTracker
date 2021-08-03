@@ -97,6 +97,7 @@ def put_job():
             application.rejected_date = form.date.data
 
         db.session.commit()
+        print("Updated application: ", application.to_dict())
         return application.to_dict()
 
     errorMessages = []
