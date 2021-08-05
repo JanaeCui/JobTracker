@@ -1,7 +1,7 @@
 
 import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../../components/reminderCalendarModal/CalendarModal.module.css"
+import styles from "./AboutMeModal.module.css"
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import { set } from "date-fns";
 
@@ -11,7 +11,7 @@ import { parseWithOptions } from "date-fns/fp";
 import AddToCalendar from '@culturehq/add-to-calendar';
 import "@culturehq/add-to-calendar/dist/styles.css"
 
-function CreateCalendar({ setShowModal, appliedJobs, interviewedJobs,offeredJobs, rejectedJobs}) {
+function AboutMe({ setShowModal, appliedJobs, interviewedJobs,offeredJobs, rejectedJobs}) {
 
 
 
@@ -29,4 +29,4 @@ function CreateCalendar({ setShowModal, appliedJobs, interviewedJobs,offeredJobs
         <AddToCalendar event={event} />
     )
 }
-export default CreateCalendar;
+export default AboutMe;

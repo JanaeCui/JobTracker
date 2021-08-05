@@ -40,6 +40,20 @@
 
 
 }
+.input_fileUpload{
+    height: 3rem ;
+    width:20.5rem;
+    border: none;
+}
+.input_fileUpload::-webkit-file-upload-button{
+    border:none;
+    border-radius: 8px;
+    height:2rem;
+}
+
+.input_fileUpload::-webkit-file-upload-button:hover{
+    background-color:#d1cad8 ;
+}
 .input2{
     border-radius: 8px;
     /* text-indent: 0.5rem; */

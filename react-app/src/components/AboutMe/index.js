@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Modal } from "../../context/Modal";
-import CreateCalendar from "./CalendarModal";
-import styles from "../../components/reminderCalendarModal/CalendarModal.module.css"
-import { FaRegBell } from "react-icons/fa"
+import AboutMe from "./AoubtMeModal";
+import styles from "./AboutMeModal.module.css"
+import { UilCommentShare } from '@iconscout/react-unicons'
 import { useSelectedBoard } from '../../context/SelectedBoard';
 import AddToCalendar from '@culturehq/add-to-calendar';
 import "@culturehq/add-to-calendar/dist/styles.css"
@@ -26,11 +26,11 @@ function CalendarModal({appliedJobs, interviewedJobs,offeredJobs, rejectedJobs})
     //     endsAt: "2018-12-06T18:00:00-05:00"
     //   }} />
     <>
-      <FaRegBell className={styles.leftBarIcon}
+      <UilCommentShare  className={styles.leftBarIcon}
                onClick={() => setShowModal(true)}/>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateCalendar setShowModal={setShowModal} appliedJobs={appliedJobs} interviewedJobs={interviewedJobs} offeredJobs={offeredJobs} rejectedJobs={rejectedJobs}  />
+          <AboutMe setShowModal={setShowModal} appliedJobs={appliedJobs} interviewedJobs={interviewedJobs} offeredJobs={offeredJobs} rejectedJobs={rejectedJobs}  />
         </Modal>
       )}
     </>

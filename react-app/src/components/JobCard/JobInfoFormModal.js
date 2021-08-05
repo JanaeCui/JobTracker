@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import newStyles from "../../components/JobCard/JobInfoFormModal.module.css"
 import { UilCalender } from '@iconscout/react-unicons'
@@ -14,6 +14,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { UilPen } from '@iconscout/react-unicons';
 import { useSelectedBoard } from '../../context/SelectedBoard';
+import { UilTrashAlt } from '@iconscout/react-unicons'
 import {updateJob} from "../../store/jobs"
 
 import "@culturehq/add-to-calendar/dist/styles.css"
@@ -28,12 +29,14 @@ import Dropdown from './MyDropdownComponent';
 function JobInfoForm({setShowModal, job}){
     const dispatch = useDispatch();
     const [companyName, setComponyName] = useState(job.jobs.companies.name);
-    const [companyLogo, setComponyLogo] = useState(job.jobs.companies.logo_url);
+    const [companyLogo, setCompanyLogo] = useState(null);
+    const [companyLogoUrl, setCompanyLogoUrl] = useState(job.jobs.companies.logo_url);
     const [companyLocation, setComponyLocation] = useState(job.jobs.companies.location);
     const [jobPosition, setJobPosition] = useState(job.jobs.position_name);
     const [postUrl, setPostUrl] = useState(job.jobs.link_url);
     const [salary, setSalary] = useState(job.jobs.salary);
     const [applicationState, setApplicationState] = useState(job.state)
+    const [deleted, setDeleted] = useState(false)
     var time = new Date();
     if (job.state === "applied") {
         time = new Date(job.applied_date)
@@ -63,6 +66,7 @@ function JobInfoForm({setShowModal, job}){
     const handleSubmit = async (e)=>{
         e.preventDefault();
 
+        var form_data = new FormData();
         const newApplication = {
             name: companyName,
             location: companyLocation,
@@ -78,11 +82,16 @@ function JobInfoForm({setShowModal, job}){
             date: applicationStateDate,
             selected_board_id: selected,
             job_id: job.jobs.id,
-            application_id:job.id
+            application_id:job.id,
+
+            deleted: deleted
         }
-
-        await dispatch(updateJob(newApplication))
-
+        for ( var key in newApplication ) {
+            form_data.append(key, newApplication[key]);
+        }
+        // console.log("form__data------", form_data);
+        await dispatch(updateJob(form_data))
+        setCompanyLogo(null)
         setEditable(false)
     }
 
@@ -117,7 +126,53 @@ else if(job.state === "rejected" ){
     event.duration = 0
 }
 
-  const AddToCalendar = ReactAddToCalendarHOC(Button, Dropdown);
+const AddToCalendar = ReactAddToCalendarHOC(Button, Dropdown);
+
+//----------------------------------------------update logo file---------------------------------
+const updateImage = (e) => {
+
+    const file = e.target.files[0];
+    console.log("file---------",file);
+    setCompanyLogo(file);
+    setCompanyLogoUrl(file.name);
+}
+
+const ref = useRef();
+
+const handleImageDelete = () =>{
+    setDeleted(true)
+    ref.current.value = "";
+    setCompanyLogoUrl("");
+}
+
+const getFileName = () => {
+    if(companyLogoUrl) {
+        let fileNames = companyLogoUrl.split("/")
+        let fileName = fileNames[fileNames.length -1]
+        return fileName;
+
+    }
+    return "Click me to upload image";
+}
+
+const displayIcon = ()=> {
+    let className = null
+    switch(job.state) {
+        case "applied":
+            className = newStyles.appliedLogo;
+            break;
+        case "interview":
+            className = newStyles.interviewedLogo;
+            break;
+        case "offered":
+            className = newStyles.offeredLogo;
+            break;
+        case "rejected":
+            className = newStyles.rejectedLogo;
+            break;
+    }
+    return companyLogoUrl ? (<img className={newStyles.logoImg} src={job.jobs.companies.logo_url}/>) : (<div className={className}><span className={newStyles.logoText}>logo</span></div>);
+}
 
     const textDisplay =()=>{
 
@@ -141,7 +196,7 @@ else if(job.state === "rejected" ){
 
                         <div className={newStyles.inputDiv}>
                             <UilPaperclip className={newStyles.inputIcon}/>
-                            <div className={newStyles.input}><img className={newStyles.logoImg} src={job.jobs.companies.logo_url}/></div>
+                            {displayIcon()}
                         </div>
                     </div>
 
@@ -323,15 +378,26 @@ else if(job.state === "rejected" ){
                             <label className={newStyles.label_edit}>Company logo</label>
 
                             <div className={newStyles.inputDiv_edit}>
-                                <UilPaperclip className={newStyles.inputIcon_edit}/>
-                                <input
+                                {/* <UilPaperclip className={newStyles.inputIcon_edit}/> */}
+                                {/* <input
                                 className={newStyles.input_edit}
                                 placeholder="Type here"
                                 name="companyLogo"
                                 type="text"
                                 value={companyLogo}
-                                onChange={(e) => setComponyLogo(e.target.value)}
+                                onChange={(e) => setCompanyLogo(e.target.value)}
+                                /> */}
+                                <input
+                                className={newStyles.input_fileUpload}
+                                ref={ref}
+                                name="image_file"
+                                type="file"
+                                accept="image/*"
+                                onChange={updateImage}
+                                id="img"
                                 />
+                                <label className={newStyles.fileName} for="img">{getFileName()}</label>
+                                <UilTrashAlt onClick={handleImageDelete} className={newStyles.inputIcon_edit_file_delete}/>
                             </div>
                         </div>
 

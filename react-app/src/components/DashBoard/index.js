@@ -18,7 +18,7 @@ import { postBoard } from '../../store/boards';
 import { useSelectedBoard } from '../../context/SelectedBoard';
 import JobCard from '../JobCard';
 import JobFormModal from '../CreateJobFormModal';
-import CalendarModal from '../reminderCalendarModal';
+import CalendarModal from '../AboutMe';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import {updateJob} from "../../store/jobs"
 

@@ -16,6 +16,7 @@ import { UilBag } from '@iconscout/react-unicons'
 import { UilLink } from '@iconscout/react-unicons'
 import { UilUsdCircle } from '@iconscout/react-unicons'
 
+
 import { useSelectedBoard } from '../../context/SelectedBoard';
 
 function CreateJobForm({ setShowModal }) {
@@ -23,7 +24,7 @@ function CreateJobForm({ setShowModal }) {
     const {selected, setSelected}= useSelectedBoard();
 
     const [companyName, setComponyName] = useState("");
-    const [companyLogo, setComponyLogo] = useState("");
+    const [companyLogo, setComponyLogo] = useState(null);
     const [companyLocation, setComponyLocation] = useState("");
     const [jobPosition, setJobPosition] = useState("");
     const [postUrl, setPostUrl] = useState("");
@@ -37,6 +38,7 @@ function CreateJobForm({ setShowModal }) {
         return time.getHours() > 12 ? "text-success" : "text-error";
       };
 
+    console.log("componyLogo________", companyLogo);
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -65,6 +67,7 @@ function CreateJobForm({ setShowModal }) {
         //     job_id: newJobData.id,
         //     user_id = user.id
         // }
+        var form_data = new FormData();
         const newApplication = {
             name: companyName,
             location: companyLocation,
@@ -79,11 +82,14 @@ function CreateJobForm({ setShowModal }) {
             date: applicationStateDate,
             selected_board_id: selected
         }
-
+        for ( var key in newApplication ) {
+            form_data.append(key, newApplication[key]);
+        }
+        console.log("form__data------", form_data);
         const res = await fetch(`/api/applications/post/`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newApplication)
+            // headers: { "Content-Type": "application/json" },
+            body: form_data,
         });
 
         if (res.ok) {
@@ -95,6 +101,8 @@ function CreateJobForm({ setShowModal }) {
             const newJobData = await dispatch(postJob(data.application))
         }
 
+
+
         setShowModal(false);
     }
 
@@ -102,6 +110,14 @@ function CreateJobForm({ setShowModal }) {
 const allJobs = useSelector((state) => Object.values(state.allJobs));
 // const selectedJob = allJobs.filter(Job => +Job.id === +selectedId)[0]
 // console.log("-----------selectedJob",selectedJob)
+//---------------------------------------update logo image---------------------------
+const updateImage = (e) => {
+
+    const file = e.target.files[0];
+    console.log("file---------",file);
+    setComponyLogo(file);
+
+}
 
 useEffect(()=>{
     dispatch(getAllJobs())
@@ -149,7 +165,7 @@ useEffect(()=>{
                                     if (selected.length > 0) {
                                         const selectedJob = allJobs.filter(Job => +Job.id === +selected[0].id)[0]
                                         setComponyName(selectedJob.companies.name)
-                                        setComponyLogo(selectedJob.companies.logo_url)
+                                        // setComponyLogo(selectedJob.companies.logo_url)
                                         setComponyLocation(selectedJob.companies.location)
                                         setJobPosition(selectedJob.position_name)
                                         setPostUrl(selectedJob.link_url)
@@ -183,15 +199,22 @@ useEffect(()=>{
                             <label className={styles.label}>Company logo</label>
 
                             <div className={styles.inputDiv}>
-                                <input
+                                {/* <input
                                 className={styles.input}
                                 placeholder="Type here"
                                 name="companyLogo"
                                 type="text"
                                 value={companyLogo}
                                 onChange={(e) => setComponyLogo(e.target.value)}
+                                /> */}
+                                <input
+                                className={styles.input_fileUpload}
+                                name="image_file"
+                                type="file"
+                                accept="image/*"
+                                onChange={updateImage}
                                 />
-                                <UilPaperclip className={styles.inputIcon}/>
+                                {/* <UilPaperclip className={styles.inputIcon}/> */}
                             </div>
                         </div>
 

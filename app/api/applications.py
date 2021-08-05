@@ -5,7 +5,8 @@ from flask import Blueprint
 from ..models import db, Company, Job, Application, Child
 from flask_login import current_user
 from app.forms import JobForm
-
+from app.s3_helpers import (
+    upload_file_to_s3, allowed_file, get_unique_filename, delete_from_s3)
 
 application_route = Blueprint('applications', __name__, url_prefix='')
 
@@ -14,12 +15,36 @@ application_route = Blueprint('applications', __name__, url_prefix='')
 def post_application():
     form = JobForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
+        url = ""
+        if "logo_url" in request.files:
+            # image = request.files[form.logo_url.name]
+            image = request.files["logo_url"]
+            print("request.files", image)
+
+            if not allowed_file(image.filename):
+                print("error request.files file type not permitted: ", image.filename)
+                return {"errors": "file type not permitted"}, 400
+
+            image.filename = get_unique_filename(image.filename)
+
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                # if the dictionary doesn't have a url key
+                # it means that there was an error when we tried to upload
+                # so we send back that error message
+                print("url not in upload: ", upload)
+                return upload, 400
+
+            url = upload["url"]
+
         newObj = {}
         company = Company(
             name=form.name.data,
             location=form.location.data,
-            logo_url=form.logo_url.data,
+            logo_url=url,
         )
         db.session.add(company)
         db.session.commit()
@@ -73,17 +98,57 @@ def post_application():
 
 @application_route.route('/api/applications/edit/', methods=['PUT'])
 def put_job():
+    print("in backend function!!!!!!!!!!!!!!")
     form = JobForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    company = Company.query.filter(Company.id == form.company_id.data).one()
+    original_url = company.logo_url
     if form.validate_on_submit():
+        print("form validated===========")
+        url = ""
+        form.deleted.data
+
+        # Swap
+        if "logo_url" in request.files:
+            # image = request.files[form.logo_url.name]
+            image = request.files["logo_url"]
+            print("request.files", image)
+
+            if not allowed_file(image.filename):
+                print("error request.files file type not permitted: ", image.filename)
+                return {"errors": "file type not permitted"}, 400
+
+            image.filename = get_unique_filename(image.filename)
+
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                # if the dictionary doesn't have a url key
+                # it means that there was an error when we tried to upload
+                # so we send back that error message
+                print("url not in upload: ", upload)
+                return upload, 400
+
+            url = upload["url"]
+        # Delete
+        elif form.deleted.data:
+            # delete in amazon
+            delete = delete_from_s3(original_url)
+            print("is deleted? ======", delete)
+            url = ""
+        # use original
+        else:
+            url = original_url
+
         application = Application.query.filter(Application.id == form.application_id.data).one()
-        company = Company.query.filter(Company.id == form.company_id.data).one()
+        # company = Company.query.filter(Company.id == form.company_id.data).one()
         job = Job.query.filter(Job.id == form.job_id.data).one()
         company.name = form.name.data
         company.location = form.location.data
-        company.logo_url = form.logo_url.data
+        company.logo_url = url
         job.position_name = form.position_name.data
-        job.link_url = form.link_url.data
+        job.link_url = url
         job.salary = form.salary.data
         job.description = form.description.data
         application.state = form.state.data

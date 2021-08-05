@@ -60,6 +60,7 @@ export const postJob = (job) => async (dispatch) => {
     //     dispatch(createJob(data));
     //     return data;
     // }
+
     dispatch(createJob(job));
     return job;
 }
@@ -81,8 +82,8 @@ export const postJob = (job) => async (dispatch) => {
   export const updateJob = (application) => async (dispatch) => {
     const res = await fetch(`/api/applications/edit/`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(application)
+      // headers: { "Content-Type": "application/json" },
+      body: application
     });
     if (res.ok) {
       const data = await res.json();

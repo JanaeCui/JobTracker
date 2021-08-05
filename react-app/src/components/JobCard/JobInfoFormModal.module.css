@@ -365,6 +365,33 @@ a:hover{
     z-index: 1000000000;
 
 }
+.inputIcon_edit_file_delete{
+    position: absolute;
+    top: 0.7rem;
+    left: 19rem;
+    color: #666666;
+    z-index: 1000000000;
+
+}
+.inputIcon_edit_file_delete:hover{
+    color: #FB717E;
+}
+
+.input_fileUpload{
+    height: 3rem ;
+    width:18rem;
+    border: none;
+    display:none;
+}
+/* .input_fileUpload::-webkit-file-upload-button{
+    border:none;
+    border-radius: 8px;
+    height:3rem;
+}
+
+.input_fileUpload::-webkit-file-upload-button:hover{
+    background-color:#d1cad8 ;
+} */
 .buttonDiv {
     display: flex;
     justify-content: center;
@@ -393,4 +420,75 @@ a:hover{
 }
 .addToCalendar{
     z-index: 10000000000000000;
+}
+.fileName{
+    border: 1px solid #C4C4C4;
+    padding-top:0.7rem;
+    padding-left: 1rem;
+    padding-right:2rem;
+    border-radius: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 21rem;
+    height: 3rem;
+    overflow: hidden;
+}
+/* ------------------------------------ */
+.appliedLogo{
+    margin-left: 1rem;
+    width: 1.92rem;
+    height: 1.92rem;
+    background-color:#916AB9 ;
+    border-radius: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.interviewedLogo{
+    margin-left: 1rem;
+    width: 1.92rem;
+    height: 1.92rem;
+    background-color:#61A5EF ;
+    border-radius: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.offeredLogo{
+    margin-left: 1rem;
+    width: 1.92rem;
+    height: 1.92rem;
+    background-color:#87D390 ;
+    border-radius: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.rejectedLogo{
+    margin-left: 1rem;
+    width: 1.92rem;
+    height: 1.92rem;
+    background-color:#FFCB00 ;
+    border-radius: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.logoText{
+    font-size: 0.6rem;
+    color:#FFFFFF;
+}
+.logoImg{
+    margin-left: 1rem;
+    border-radius: 3rem;
+    object-fit: cover;
+    width: 1.92rem;
+    height: 1.92rem;
+    border: none;
 }
