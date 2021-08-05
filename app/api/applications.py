@@ -102,9 +102,9 @@ def put_job():
     form = JobForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    company = Company.query.filter(Company.id == form.company_id.data).one()
-    original_url = company.logo_url
     if form.validate_on_submit():
+        company = Company.query.filter(Company.id == form.company_id.data).one()
+        original_url = company.logo_url
         print("form validated===========")
         url = ""
         form.deleted.data
@@ -164,6 +164,8 @@ def put_job():
         db.session.commit()
         print("Updated application: ", application.to_dict())
         return application.to_dict()
+    else:
+        print("Form invalid", form.errors)
 
     errorMessages = []
     for field in form.errors:

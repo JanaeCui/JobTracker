@@ -22,7 +22,6 @@ function JobCard({job, index}) {
         await dispatch(deleteJob({"applicationId": job.id, "jobId": job.jobs.id, "companyId": job.jobs.companies.id}));
       };
     const getTime = (date) => {
-        console.log("date type: ", typeof(date), "date:", date)
         return format(Date.parse(date), "yyyy-MM-dd")
     }
     return (

@@ -135,8 +135,11 @@ const onDragEnd = async (result) => {
     application_id:selectedJob.id
 }
 
-await dispatch(updateJob(newApplication))
-
+var form_data = new FormData()
+for ( var key in newApplication ) {
+  form_data.append(key, newApplication[key]);
+}
+await dispatch(updateJob(form_data))
 }
 
   return (
