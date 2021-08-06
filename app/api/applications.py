@@ -148,7 +148,7 @@ def put_job():
         company.location = form.location.data
         company.logo_url = url
         job.position_name = form.position_name.data
-        job.link_url = url
+        job.link_url = form.link_url.data
         job.salary = form.salary.data
         job.description = form.description.data
         application.state = form.state.data
