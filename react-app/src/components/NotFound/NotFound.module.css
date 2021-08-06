@@ -1,0 +1,20 @@
+.notFoundImg{
+    margin-top: 0rem;
+}
+.notFoundText{
+    margin-top: 5rem;
+    margin-left: 6rem;
+}
+.mainPart{
+    display: flex;
+    flex-direction: column;
+}
+.linkBackToHome{
+    margin-left: 6rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    color: #412468;
+}
+.linkBackToHome:hover{
+    color: #7d5aa0;
+}

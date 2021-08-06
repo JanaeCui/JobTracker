@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import LandingPage from './components/LandingPage';
 import DashBoard from './components/DashBoard/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NotFound from './components/NotFound'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,18 +38,19 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path='/jobs' exact={true} >
           <DashBoard/>
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <LandingPage/>
         </Route>
+        <Route path='*'><NotFound /></Route>
       </Switch>
     </BrowserRouter>
   );
