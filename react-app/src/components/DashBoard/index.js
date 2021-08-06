@@ -18,10 +18,11 @@ import { postBoard } from '../../store/boards';
 import { useSelectedBoard } from '../../context/SelectedBoard';
 import JobCard from '../JobCard';
 import JobFormModal from '../CreateJobFormModal';
-import CalendarModal from '../AboutMe';
+import AboutMe from '../AboutMe';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import {updateJob} from "../../store/jobs"
 import { format } from "date-fns";
+import { UilCommentShare } from '@iconscout/react-unicons'
 
 const DashBoard = () => {
   const boards = useSelector((state) => Object.values(state.boards));
@@ -237,7 +238,8 @@ const getReleventDateSTr = (job, state) => {
               <div className={styles.leftBarBottom}>
                 <div className={styles.alarmGroup}>
                   {/* <FaRegBell className={styles.leftBarIcon}/> */}
-                  {/* <CalendarModal className={styles.leftBarIcon} appliedJobs={appliedJobs} interviewedJobs={interviewedJobs} offeredJobs={offeredJobs} rejectedJobs={rejectedJobs} /> */}
+                  <UilCommentShare className={styles.leftBarIcon} />
+                  <AboutMe className={styles.AboutMeButton}  />
 
                 </div>
                 <div className={styles.logOutGroup}>

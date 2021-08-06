@@ -7,6 +7,7 @@ import { UilCommentShare } from '@iconscout/react-unicons'
 import { useSelectedBoard } from '../../context/SelectedBoard';
 import AddToCalendar from '@culturehq/add-to-calendar';
 import "@culturehq/add-to-calendar/dist/styles.css"
+import { NavLink } from "react-router-dom";
 
 function CalendarModal({appliedJobs, interviewedJobs,offeredJobs, rejectedJobs}) {
   const [showModal, setShowModal] = useState(false);
@@ -26,11 +27,12 @@ function CalendarModal({appliedJobs, interviewedJobs,offeredJobs, rejectedJobs})
     //     endsAt: "2018-12-06T18:00:00-05:00"
     //   }} />
     <>
-      <UilCommentShare  className={styles.leftBarIcon}
-               onClick={() => setShowModal(true)}/>
+      {/* <UilCommentShare  className={styles.leftBarIcon}
+               onClick={() => setShowModal(true)}/> */}
+      <NavLink to="#" className={styles.leftBarIcon} onClick={() => setShowModal(true)}>About</NavLink>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <AboutMe setShowModal={setShowModal} appliedJobs={appliedJobs} interviewedJobs={interviewedJobs} offeredJobs={offeredJobs} rejectedJobs={rejectedJobs}  />
+          <AboutMe  />
         </Modal>
       )}
     </>

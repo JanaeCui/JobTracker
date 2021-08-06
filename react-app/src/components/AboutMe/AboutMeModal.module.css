@@ -1,24 +1,80 @@
 .leftBarIcon{
-    font-size: 20px;
+    padding-left: 0.5rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.leftBarIcon:hover{
+    color: #FFCB00;
+}
+
+.header{
+    border-radius: 8px 8px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 78px;
+    background-color: #412468;
+
+}
+.formTitle{
+    font-size: 24px;
+    font-weight: bold;
     color: #FFFFFF;
 }
-.calendarDiv{
-    max-height: 600px;
+.outerDiv{
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+ .developerGroup{
+    display: flex;
+    margin-top:3rem;
+}
+
+.emailGroup{
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.linkedinGroup, .gitHubGroup{
+    display: flex;
+    margin-top: 2rem;
 
 }
-.calendar{
-    width: 600px;
+.text1{
+    margin-left: 2rem;
+
+    font-weight: bold;
+}
+.text2{
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #412468;
+    font-weight: bold;
+}
+.text2:hover{
+    color: #916AB9;
+}
+.icon1{
+    color: #916AB9;
 }
 
-.calendarWrapper {
-    width: 600px;
-    height: 500px;
-  }
-
-.dayCell{
-    height: 20px;
-    width: 50px;
+.icon2{
+    color: #61A5EF;
 }
-a{
-    color: #666666;
+
+.icon3{
+    color: #87D390;
+}
+.icon4{
+    color: #FFCB00;
+}
+.info{
+    color: #412468;
+    font-weight: 400;
 }

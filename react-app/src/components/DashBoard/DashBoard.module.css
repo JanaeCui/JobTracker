@@ -55,6 +55,9 @@
 .logOutGroup{
     margin-top: 2rem;
 }
+.alarmGroup{
+    display: flex;
+}
 
 .leftBarBottom{
 
