@@ -40,8 +40,8 @@ const NavBar = () => {
           {/* <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink> */}
-          {user? null: <button onClick={logInRouteChange} activeClassName='active' className={styles.logInButton}>Log In</button> }
-          {user? null: <button onClick={signUpRouteChange} activeClassName='active' className={styles.signUpButton}>Sign Up</button>}
+          {user? null: <button onClick={logInRouteChange}  className={styles.logInButton}>Log In</button> }
+          {user? null: <button onClick={signUpRouteChange}  className={styles.signUpButton}>Sign Up</button>}
         </div>
         {/* <div>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>

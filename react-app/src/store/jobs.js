@@ -3,6 +3,7 @@ const POST_JOB= 'jobs/POST_JOB';
 const CLEAR_JOB = 'jobs/CLEAR_JOB';
 const EDIT_JOB = 'jobs/EDIT_JOB';
 const DELETE_JOB = 'jobs/DELETE_JOB';
+const CLEAR_ALL_JOB = 'jobs/CLEAR_ALL_JOB';
 
 const setJob =(jobs)=>({
     type: SET_JOB,
@@ -29,7 +30,15 @@ const removeJob = (job) =>({
   job
 })
 
+const clearAllJobs = ()=>({
+  type:CLEAR_ALL_JOB,
+})
+
 const initialState = {};
+
+export const clearAllJobsLogOut = () => (dispatch) => {
+  dispatch(clearAllJobs());
+}
 
 export const getJobs = (boardId) => async (dispatch) => {
     const response = await fetch(`/api/boards/${boardId}/jobs`, {
@@ -137,6 +146,10 @@ export const postJob = (job) => async (dispatch) => {
         const newObj2 = {...state}
         delete newObj2[action.job.id];
         return newObj2
+      case CLEAR_ALL_JOB:
+        console.log("clear")
+        return {}
+
       default:
         return state;
     }
