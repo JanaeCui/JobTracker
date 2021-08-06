@@ -396,7 +396,7 @@ const displayIcon = ()=> {
                                 onChange={updateImage}
                                 id="img"
                                 />
-                                <label className={newStyles.fileName} >{getFileName()}</label>
+                                <label className={newStyles.fileName} htmlFor="img">{getFileName()}</label>
                                 <UilTrashAlt onClick={handleImageDelete} className={newStyles.inputIcon_edit_file_delete}/>
                             </div>
                         </div>
