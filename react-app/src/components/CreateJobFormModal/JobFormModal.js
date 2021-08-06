@@ -33,6 +33,9 @@ function CreateJobForm({ setShowModal }) {
     const [applicationStateDate, setApplicationStateDate] = useState(new Date());
     const [note, setNote] = useState("");
     const user = useSelector((state) => state.session.user);
+    const [companyNameClassName, setCompanyNameClassName] = useState(styles.input)
+    const [jobPositionClassName, setJobPositionClassName] = useState(styles.input)
+    const [applicationStateClassName, setApplicationStateClassName] = useState(styles.input2)
 
     let handleColor = (time) => {
         return time.getHours() > 12 ? "text-success" : "text-error";
@@ -141,7 +144,28 @@ useEffect(()=>{
         return list
 
     }
+//-----------------------------------------error handler--------------------------------
+    useEffect(()=>{
 
+        if(!companyName){
+            setCompanyNameClassName(styles.inputError1)
+        }else{
+            setCompanyNameClassName(styles.input)
+        }
+
+        if(!jobPosition){
+            setJobPositionClassName(styles.inputError1)
+        }else{
+            setJobPositionClassName(styles.input)
+        }
+
+        if(!applicationState){
+            setApplicationStateClassName(styles.inputError2)
+        }else{
+            setApplicationStateClassName(styles.input2)
+        }
+
+    },[companyName,jobPosition, applicationState])
 
     return (
         <div className={styles.outerDiv}>
@@ -184,7 +208,7 @@ useEffect(()=>{
 
                             <div className={styles.inputDiv}>
                                 <input
-                                className={styles.input}
+                                className={companyNameClassName}
                                 placeholder="Type here"
                                 name="companyName"
                                 type="text"
@@ -239,7 +263,7 @@ useEffect(()=>{
 
                             <div className={styles.inputDiv}>
                                 <input
-                                className={styles.input}
+                                className={jobPositionClassName}
                                 placeholder="Type here"
                                 name="jobPosition"
                                 type="text"
@@ -307,7 +331,7 @@ useEffect(()=>{
                                     <option value={4}>rejected</option>
                                 </select> */}
                                 <Typeahead
-                                className={styles.input2}
+                                className={applicationStateClassName}
                                 placeholder="Select here"
                                 id="application"
                                 options={applicationOptions}

@@ -236,7 +236,7 @@ const displayIcon = ()=> {
 
                         <div className={newStyles.inputDiv}>
                             <UilLink className={newStyles.inputIcon}/>
-                            <a href={job.jobs.link_url} target="_blank" className={newStyles.input_job_link}>Job Link </a>
+                            {postUrl?<a href={postUrl} target="_blank" className={newStyles.input_job_link}>Job Link </a>:null}
                         </div>
                     </div>
 

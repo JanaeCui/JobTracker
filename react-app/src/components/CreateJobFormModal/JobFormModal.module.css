@@ -28,6 +28,24 @@
     color: #666666;
 
 }
+.inputError2{
+    border-radius: 8px;
+    /* text-indent: 2.5rem; */
+    width: 20.5rem;
+    height: 3rem ;
+    margin-bottom: 5px;
+    border: 1px solid #FB717E;
+    color: #666666;
+}
+.inputError1{
+    border-radius: 8px;
+    text-indent: 2.5rem;
+    width: 20.5rem;
+    height: 3rem ;
+    margin-bottom: 5px;
+    border: 1px solid #FB717E;
+    color: #666666;
+}
 
 .input{
     border-radius: 8px;
@@ -56,15 +74,15 @@
 }
 .input2{
     border-radius: 8px;
-    /* text-indent: 0.5rem; */
+    /* text-indent: 0rem; */
     width: 20.5rem;
     height: 3rem ;
     margin-bottom: 5px;
     border: 1px solid #C4C4C4;
     color: #666666;
 
-
 }
+
 .input3{
     border-radius: 8px;
     text-indent: 0.5rem;
