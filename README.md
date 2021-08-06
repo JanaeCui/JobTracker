@@ -29,8 +29,6 @@ The main logic of the backend of honeycomb was created using python and flask wi
 <br>
 
 ![image](https://user-images.githubusercontent.com/67615302/128550367-3fa4a7aa-f6c1-46fa-8248-ff1f8a155320.png)
-<br>
-![image](https://user-images.githubusercontent.com/67615302/128550311-5805f356-08f7-4fca-9fca-acd7f47018ca.png)
 
 <br>
 
