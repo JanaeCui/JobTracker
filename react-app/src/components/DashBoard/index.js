@@ -21,24 +21,25 @@ import JobFormModal from '../CreateJobFormModal';
 import CalendarModal from '../AboutMe';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import {updateJob} from "../../store/jobs"
+import { format } from "date-fns";
 
 const DashBoard = () => {
   const boards = useSelector((state) => Object.values(state.boards));
   const dispatch = useDispatch();
   const {selected, setSelected}= useSelectedBoard();
   const user = useSelector((state) => state.session.user);
-  const applicationRelatedJobs = useSelector((state) => Object.values(state.jobs));
+  let applicationRelatedJobs = useSelector((state) => Object.values(state.jobs));
   const applicationMap = useSelector((state) => state.jobs);
 
-  // console.log("_________", applicationRelatedJobs.map(applicationRelatedJob => applicationRelatedJob.jobs.position_name))
-  const appliedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "applied")
+  // // console.log("_________", applicationRelatedJobs.map(applicationRelatedJob => applicationRelatedJob.jobs.position_name))
+  // const appliedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "applied")
 
-  const interviewedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "interview")
+  // const interviewedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "interview")
 
-  const offeredJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "offered")
+  // const offeredJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "offered")
+  // // const rejectedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "rejected")
+
   // const rejectedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "rejected")
-
-  const rejectedJobs = applicationRelatedJobs.filter(applicationRelatedJob => applicationRelatedJob.state === "rejected")
 
   useEffect(()=>{
     dispatch(getBoards())
@@ -54,46 +55,46 @@ const DashBoard = () => {
   })
 }
 
-const renderAppliedJobCard = ()=>{
-  if(appliedJobs){
-    return appliedJobs.map((appliedJob, index) =>{
+// const renderAppliedJobCard = ()=>{
+//   if(appliedJobs){
+//     return appliedJobs.map((appliedJob, index) =>{
 
-      return <JobCard key={appliedJob.id} job={appliedJob} index={index}/>
-    })
-  }
-  return []
-}
+//       return <JobCard key={appliedJob.id} job={appliedJob} index={index}/>
+//     })
+//   }
+//   return []
+// }
 
-const renderInterviewedJobCard = ()=>{
-  if(interviewedJobs){
+// const renderInterviewedJobCard = ()=>{
+//   if(interviewedJobs){
 
-    return interviewedJobs.map((interviewedJob, index) =>{
+//     return interviewedJobs.map((interviewedJob, index) =>{
 
-      return <JobCard key={interviewedJob.id} job={interviewedJob} index={index}/>
-    })
-  }
-  return []
-}
+//       return <JobCard key={interviewedJob.id} job={interviewedJob} index={index}/>
+//     })
+//   }
+//   return []
+// }
 
-const renderOfferedJobCard = ()=>{
-  if(offeredJobs){
-    return offeredJobs.map((offeredJob, index) =>{
+// const renderOfferedJobCard = ()=>{
+//   if(offeredJobs){
+//     return offeredJobs.map((offeredJob, index) =>{
 
-      return <JobCard key={offeredJob.id} job={offeredJob} index={index}/>
-    })
-  }
-  return []
-}
+//       return <JobCard key={offeredJob.id} job={offeredJob} index={index}/>
+//     })
+//   }
+//   return []
+// }
 
-const renderRejectedJobCard = ()=>{
-  if(rejectedJobs){
-    return rejectedJobs.map((rejectedJob, index) =>{
+// const renderRejectedJobCard = ()=>{
+//   if(rejectedJobs){
+//     return rejectedJobs.map((rejectedJob, index) =>{
 
-      return <JobCard key={rejectedJob.id} job={rejectedJob} index={index}/>
-    })
-  }
-  return []
-}
+//       return <JobCard key={rejectedJob.id} job={rejectedJob} index={index}/>
+//     })
+//   }
+//   return []
+// }
 
 
 const handlePostBoard = async (e) => {
@@ -141,6 +142,76 @@ for ( var key in newApplication ) {
 }
 await dispatch(updateJob(form_data))
 }
+//------------------------------------------------------------------------search-------------------------------------------
+const [searchTerm, setSearchTerm] = useState("");
+  const editSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+//   const getTime = (date) => {
+//     var day = new Date(date);
+//     var dd = String(today.getDate()).padStart(2, '0');
+//     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+//     var yyyy = today.getFullYear();
+
+//     day = yyyy + '-' + mm + '-' + dd;
+//     return day
+// }
+const getTime = (date) => {
+  if (date) {
+    return format(Date.parse(date), "yyyy-MM-dd")
+  }
+  return "";
+}
+
+const getReleventDateSTr = (job, state) => {
+  switch(state) {
+    case "applied":
+      return getTime(job.applied_date)
+    case "interview":
+      return getTime(job.interviewed_date)
+    case "offered":
+      return getTime(job.offered_date)
+    case "rejected":
+      return getTime(job.rejected_date)
+    default:
+      return ""
+  }
+
+}
+  const dynamicSearch = () => {
+    return applicationRelatedJobs.filter((applicationRelatedJob) =>{
+    // console.log('applicationRelatedJob------------', applicationRelatedJob?.jobs?.position_name?.toLowerCase().includes(searchTerm.toLowerCase()));
+    // console.log("date----------", new Date(applicationRelatedJob.applied_date).toLocaleDateString('en-US'));
+    // console.log("date----------", getTime(applicationRelatedJob.applied_date));
+      return applicationRelatedJob?.jobs?.position_name?.toLowerCase().includes(searchTerm.toLowerCase())
+      || applicationRelatedJob?.jobs?.companies.name?.toLowerCase().includes(searchTerm.toLowerCase())
+
+      || getReleventDateSTr(applicationRelatedJob, applicationRelatedJob.state).includes(searchTerm)
+      // || new Date(applicationRelatedJob.interviewed_date).toISOString().includes(searchTerm)
+      // || new Date(applicationRelatedJob.offered_date).toISOString().includes(searchTerm)
+      // || new Date(applicationRelatedJob.rejected_date).toISOString().includes(searchTerm)
+      // || getTime(applicationRelatedJob?.interviewed_date?).toString().toLowerCase().includes(searchTerm.toLowerCase())
+      // || getTime(applicationRelatedJob?.offered_date?).toString().toLowerCase().includes(searchTerm.toLowerCase())
+      // || getTime(applicationRelatedJob?.rejected_date?).toString().toLowerCase().includes(searchTerm.toLowerCase())
+
+    }
+    );
+  };
+
+  const getJobInColumn = (state) => {
+    return dynamicSearch().filter(applicationRelatedJob => applicationRelatedJob.state === state);
+  }
+
+  const renderJobCard = (state)=>{
+    let jobs = getJobInColumn(state)
+    if(jobs){
+      return jobs.map((appliedJob, index) =>{
+
+        return <JobCard key={appliedJob.id} job={appliedJob} index={index}/>
+      })
+    }
+    return []
+  }
 
   return (
 
@@ -166,7 +237,7 @@ await dispatch(updateJob(form_data))
               <div className={styles.leftBarBottom}>
                 <div className={styles.alarmGroup}>
                   {/* <FaRegBell className={styles.leftBarIcon}/> */}
-                  <CalendarModal className={styles.leftBarIcon} appliedJobs={appliedJobs} interviewedJobs={interviewedJobs} offeredJobs={offeredJobs} rejectedJobs={rejectedJobs} />
+                  {/* <CalendarModal className={styles.leftBarIcon} appliedJobs={appliedJobs} interviewedJobs={interviewedJobs} offeredJobs={offeredJobs} rejectedJobs={rejectedJobs} /> */}
 
                 </div>
                 <div className={styles.logOutGroup}>
@@ -179,7 +250,7 @@ await dispatch(updateJob(form_data))
           <div className={styles.rightPart}>
             <div className={styles.rightPartTopDiv}>
               <div className={styles.searchBarAndIcon}>
-                <input placeholder="Search Company name, date, location" className={styles.searchBar} />
+                <input placeholder="Search Company name, date, location" className={styles.searchBar}  onChange={editSearch} />
                 <UilSearch className={styles.searchIcon}/>
               </div>
             </div>
@@ -194,7 +265,7 @@ await dispatch(updateJob(form_data))
                             <div className={styles.applicationTitle}>APPLIED</div>
                             <div className={styles.colorUnderlineApplied}></div>
                           </div>
-                          {renderAppliedJobCard()}
+                          {renderJobCard("applied")}
                           {provided.placeholder}
                         </div>)}
                     </Droppable>
@@ -206,7 +277,7 @@ await dispatch(updateJob(form_data))
                           <div className={styles.applicationTitle}>INTERVIEW</div>
                           <div className={styles.colorUnderlineInterviewed}></div>
                         </div>
-                        {renderInterviewedJobCard()}
+                        {renderJobCard("interview")}
                         {provided.placeholder}
 
                     </div>)}</Droppable>
@@ -218,7 +289,7 @@ await dispatch(updateJob(form_data))
                           <div className={styles.applicationTitle}>OFFER</div>
                           <div className={styles.colorUnderlineOffered}></div>
                         </div>
-                        {renderOfferedJobCard()}
+                        {renderJobCard("offered")}
                         {provided.placeholder}
 
                     </div>)}</Droppable>
@@ -230,7 +301,7 @@ await dispatch(updateJob(form_data))
                           <div className={styles.applicationTitle}>REJECTED</div>
                           <div className={styles.colorUnderlineRejected}></div>
                         </div>
-                        {renderRejectedJobCard()}
+                        {renderJobCard("rejected")}
                         {provided.placeholder}
 
                       </div>)}</Droppable>

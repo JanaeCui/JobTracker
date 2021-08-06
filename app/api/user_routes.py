@@ -21,7 +21,9 @@ def user(id):
 
 @user_routes.route('/username', methods=['PUT'])
 def put_username():
-    current_user.username = request.json['username']
-    db.session.commit()
-    return current_user.to_dict()
-
+    try:
+        current_user.username = request.json['username']
+        db.session.commit()
+        return current_user.to_dict()
+    except:
+        return {"error" : "Name already exited!"}

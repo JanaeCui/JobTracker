@@ -85,8 +85,18 @@ export const updateUser = (username) => async (dispatch) => {
     })
   });
   if (response.ok) {
+
     const data = await response.json();
+    if(data.error){
+
+      console.log("data.error", data.error);
+      return false
+    }
+    console.log("change successful!");
     dispatch(editUser(data));
+    return true;
+ }else{
+   return false;
  }
 
 }

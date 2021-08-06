@@ -13,6 +13,7 @@ export default function ProfileName() {
   const allUsers = useSelector((state) => Object.values(state.session));
   const name = allUsers[0].username
   const [newTitle, setNewTitle] = useState(name);
+  const [errors, setErrors] = useState(false)
 
   const useStyle = makeStyles(() => ({
     input: {
@@ -32,9 +33,16 @@ export default function ProfileName() {
     setNewTitle(e.target.value);
   };
 
-  const handleOnBlur = (e) => {
+  const handleOnBlur = async(e) => {
     if (e.target.value !== ""){
-      dispatch(updateUser(newTitle))
+      const result = await dispatch(updateUser(newTitle))
+      console.log("result", result);
+      if(!result){
+        setErrors(true)
+        setTimeout(()=>{
+          setErrors(false)
+        }, 3000)
+      }
     }else {
       setNewTitle(name)
     }
@@ -60,16 +68,20 @@ export default function ProfileName() {
           />
         </div>
       ) : (
-        <div className={styles.originNameDiv}>
-          <NavLink
-            className={styles.NavLink}
-            to ="#"
-            onClick={() => setOpen(!open)}
-          >
-            <span className={styles.name}>{name}</span>
-
-          </NavLink>
-        </div>
+        <>
+          <div className={styles.originNameDiv}>
+            <NavLink
+              className={styles.NavLink}
+              to ="#"
+              onClick={() => setOpen(!open)}
+            >
+              <span className={styles.name}>{name}</span>
+            </NavLink>
+          </div>
+          <div>
+            {errors && <span className={styles.error}>Can not change to exited name!</span>}
+          </div>
+        </>
       )}
     </div>
   );
