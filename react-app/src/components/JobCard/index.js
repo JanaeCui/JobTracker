@@ -24,6 +24,15 @@ function JobCard({job, index}) {
     const getTime = (date) => {
         return format(Date.parse(date), "yyyy-MM-dd")
     }
+
+    const handleLinktoLinkedin = (e) =>{
+        e.stopPropagation()
+        if(job.jobs.link_url){
+            window.open(job.jobs.link_url, "_blank")
+        }
+    }
+
+
     return (
         <Draggable draggableId={`${job.id}`} index={index}>
             {(provided)=>(
@@ -46,7 +55,7 @@ function JobCard({job, index}) {
                         {job.state === "rejected"? <div className={styles.date}>{job.state} at {getTime(job.rejected_date)}</div>: null}
                     </div>
                     <div className={styles.buttons}>
-                        <UilLink className={styles.editButton}/>
+                        <UilLink onClick={handleLinktoLinkedin} className={styles.editButton}/>
                         <UilTrashAlt onClick={handleDelete} className={styles.deleteButton}/>
                     </div>
                 </div>

@@ -17,14 +17,15 @@ import { UilUser } from '@iconscout/react-unicons'
 
 function AboutMe() {
 
-    const routeChangeToLinkedin = () =>{
-        window.location = "https://www.linkedin.com/in/cuijiajanae/";
+    // const routeChangeToLinkedin = () =>{
+    //     window.location = "https://www.linkedin.com/in/cuijiajanae/";
+    //     window.open(url, "_blank");
 
-    }
-    const routeChangeToGitHub = () =>{
-        window.location = "https://github.com/JanaeCui/JobTracker";
+    // }
+    // const routeChangeToGitHub = () =>{
+    //     window.location = "https://github.com/JanaeCui/JobTracker";
 
-    }
+    // }
 
 
     return(
@@ -42,11 +43,11 @@ function AboutMe() {
                     </div>
 
                     <div className={styles.linkedinGroup}>
-                        <UilLinkedin className={styles.icon2} onClick={routeChangeToLinkedin}/>
+                        <UilLinkedin className={styles.icon2} />
                         <a href="https://www.linkedin.com/in/cuijiajanae/" target="_blank" className={styles.text2}>LinkedIn</a>
                     </div>
                     <div className={styles.gitHubGroup}>
-                        <UilGithub className={styles.icon3} onClick={routeChangeToGitHub}/>
+                        <UilGithub className={styles.icon3} />
                         <a href="https://github.com/JanaeCui/JobTracker" target="_blank" className={styles.text2}>GitHub</a>
                     </div>
                     <div className={styles.emailGroup}>
