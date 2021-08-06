@@ -88,7 +88,7 @@ function CreateJobForm({ setShowModal }) {
         for ( var key in newApplication ) {
             form_data.append(key, newApplication[key]);
         }
-        console.log("form__data------", form_data);
+        // console.log("form__data------", form_data);
         const res = await fetch(`/api/applications/post/`, {
             method: "POST",
             // headers: { "Content-Type": "application/json" },

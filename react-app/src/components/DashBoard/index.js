@@ -52,7 +52,7 @@ const DashBoard = () => {
 
   const renderBoardCard = ()=>{
   return boards.map((board)=>{
-    return <BoardCard onClick={()=>{ dispatch(getJobs(board.id)); setSelected(board.id); console.log("setSelected+++++++++", board.id);}} key={board.id} board={board}/>
+    return <BoardCard onClick={()=>{ dispatch(getJobs(board.id)); setSelected(board.id);}} key={board.id} board={board}/>
   })
 }
 
@@ -117,7 +117,7 @@ const onDragEnd = async (result) => {
   }
 
   const selectedJob = applicationMap[draggableId];
- 
+
 
   const newApplication = {
     name: selectedJob.jobs.companies.name,

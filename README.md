@@ -44,7 +44,7 @@ The main logic of the backend of honeycomb was created using python and flask wi
 
 const onDragEnd = async (result) => {
 const { destination, source, draggableId, type } = result;
-console.log('destination', destination, 'source', source, draggableId);
+// console.log('destination', destination, 'source', source, draggableId);
 
 if (!destination || source.droppableId === destination.droppableId) {
     return;
