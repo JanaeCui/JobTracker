@@ -132,7 +132,7 @@ const AddToCalendar = ReactAddToCalendarHOC(Button, Dropdown);
 const updateImage = (e) => {
 
     const file = e.target.files[0];
-    console.log("file---------",file);
+    
     setCompanyLogo(file);
     setCompanyLogoUrl(file.name);
 }

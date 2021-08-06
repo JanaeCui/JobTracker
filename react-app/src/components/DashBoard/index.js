@@ -110,14 +110,14 @@ const handlePostBoard = async (e) => {
 //------------------------------------------------------------drag and drop------------------------
 const onDragEnd = async (result) => {
   const { destination, source, draggableId, type } = result;
-  console.log('destination', destination, 'source', source, draggableId);
+
 
   if (!destination || source.droppableId === destination.droppableId) {
     return;
   }
-  console.log("Source: ", source.droppableId, "Dst: ", destination.droppableId, "ApplicationId: ", draggableId)
+
   const selectedJob = applicationMap[draggableId];
-  console.log("Selectec Job: ", selectedJob)
+ 
 
   const newApplication = {
     name: selectedJob.jobs.companies.name,

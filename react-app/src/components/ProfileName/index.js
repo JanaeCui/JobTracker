@@ -36,7 +36,7 @@ export default function ProfileName() {
   const handleOnBlur = async(e) => {
     if (e.target.value !== ""){
       const result = await dispatch(updateUser(newTitle))
-      console.log("result", result);
+      
       if(!result){
         setErrors(true)
         setTimeout(()=>{

@@ -41,7 +41,7 @@ function CreateJobForm({ setShowModal }) {
         return time.getHours() > 12 ? "text-success" : "text-error";
       };
 
-    console.log("componyLogo________", companyLogo);
+
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -117,7 +117,7 @@ const allJobs = useSelector((state) => Object.values(state.allJobs));
 const updateImage = (e) => {
 
     const file = e.target.files[0];
-    console.log("file---------",file);
+
     setComponyLogo(file);
 
 }

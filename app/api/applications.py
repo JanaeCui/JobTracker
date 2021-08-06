@@ -21,10 +21,10 @@ def post_application():
         if "logo_url" in request.files:
             # image = request.files[form.logo_url.name]
             image = request.files["logo_url"]
-            print("request.files", image)
+            # print("request.files", image)
 
             if not allowed_file(image.filename):
-                print("error request.files file type not permitted: ", image.filename)
+                # print("error request.files file type not permitted: ", image.filename)
                 return {"errors": "file type not permitted"}, 400
 
             image.filename = get_unique_filename(image.filename)
@@ -35,7 +35,7 @@ def post_application():
                 # if the dictionary doesn't have a url key
                 # it means that there was an error when we tried to upload
                 # so we send back that error message
-                print("url not in upload: ", upload)
+                # print("url not in upload: ", upload)
                 return upload, 400
 
             url = upload["url"]
@@ -48,7 +48,7 @@ def post_application():
         )
         db.session.add(company)
         db.session.commit()
-        print("company id_____", company.id)
+        # print("company id_____", company.id)
         job = Job(
             position_name=form.position_name.data,
             link_url=form.link_url.data,
@@ -98,14 +98,14 @@ def post_application():
 
 @application_route.route('/api/applications/edit/', methods=['PUT'])
 def put_job():
-    print("in backend function!!!!!!!!!!!!!!")
+    # print("in backend function!!!!!!!!!!!!!!")
     form = JobForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         company = Company.query.filter(Company.id == form.company_id.data).one()
         original_url = company.logo_url
-        print("form validated===========")
+        # print("form validated===========")
         url = ""
         form.deleted.data
 
@@ -113,10 +113,10 @@ def put_job():
         if "logo_url" in request.files:
             # image = request.files[form.logo_url.name]
             image = request.files["logo_url"]
-            print("request.files", image)
+            # print("request.files", image)
 
             if not allowed_file(image.filename):
-                print("error request.files file type not permitted: ", image.filename)
+                # print("error request.files file type not permitted: ", image.filename)
                 return {"errors": "file type not permitted"}, 400
 
             image.filename = get_unique_filename(image.filename)
@@ -127,7 +127,7 @@ def put_job():
                 # if the dictionary doesn't have a url key
                 # it means that there was an error when we tried to upload
                 # so we send back that error message
-                print("url not in upload: ", upload)
+                # print("url not in upload: ", upload)
                 return upload, 400
 
             url = upload["url"]
@@ -135,7 +135,7 @@ def put_job():
         elif form.deleted.data:
             # delete in amazon
             delete = delete_from_s3(original_url)
-            print("is deleted? ======", delete)
+            # print("is deleted? ======", delete)
             url = ""
         # use original
         else:
@@ -162,7 +162,7 @@ def put_job():
             application.rejected_date = form.date.data
 
         db.session.commit()
-        print("Updated application: ", application.to_dict())
+        # print("Updated application: ", application.to_dict())
         return application.to_dict()
     else:
         print("Form invalid", form.errors)

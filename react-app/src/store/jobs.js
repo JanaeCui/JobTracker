@@ -147,7 +147,6 @@ export const postJob = (job) => async (dispatch) => {
         delete newObj2[action.job.id];
         return newObj2
       case CLEAR_ALL_JOB:
-        console.log("clear")
         return {}
 
       default:
