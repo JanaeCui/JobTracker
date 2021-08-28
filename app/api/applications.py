@@ -134,6 +134,7 @@ def put_job():
         # Delete
         elif form.deleted.data:
             # delete in amazon
+            print("deleted____________")
             delete = delete_from_s3(original_url)
             # print("is deleted? ======", delete)
             url = ""
@@ -182,6 +183,9 @@ def delete_board():
     company = Company.query.filter(Company.id == request.json["companyId"]).one()
     job = Job.query.filter(Job.id == request.json["jobId"]).one()
     child = Child.query.filter(Child.application_id == application.id).one()
+
+    logo_url = company.logo_url
+    delete_from_s3(logo_url)
 
     db.session.delete(child)
     db.session.delete(application)

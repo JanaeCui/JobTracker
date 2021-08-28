@@ -4,6 +4,7 @@ from app.models import application
 from flask import Blueprint, request, jsonify
 from flask_login import current_user
 from ..models import db, Job, Child, Application, Board
+from app.s3_helpers import (delete_from_s3)
 
 job_route = Blueprint('jobs', __name__, url_prefix='')
 
@@ -39,8 +40,12 @@ def clear_allJobs(id):
     # print("++++++++++", allJobs)
     # for job in allJobs:
     #     db.session.delete(job)
+
     for application in board.applications:
         db.session.delete(application)
+        logo_url = application.jobs.companies.logo_url
+        delete_from_s3(logo_url)
+
     db.session.commit()
 
     return jsonify(allJobs)

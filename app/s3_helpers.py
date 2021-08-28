@@ -1,3 +1,4 @@
+from sys import prefix
 import boto3
 import botocore
 import os
@@ -5,6 +6,7 @@ import uuid
 
 BUCKET_NAME = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
+# S3_LOCATION2 = f"https://job.tracker.s3.amazonaws.com/"
 ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
 
 # print("S3 setup: ", os.environ.get("S3_KEY"), " ", os.environ.get("S3_SECRET"))
@@ -45,10 +47,14 @@ def upload_file_to_s3(file, acl="public-read"):
     return {"url": f"{S3_LOCATION}{file.filename}"}
 
 
-def delete_from_s3(file):
+def delete_from_s3(url):
+    # print(f"Removing URL: {url}")
+    prefix_len = len(S3_LOCATION)
+    key = url[prefix_len:]
     try:
-        s3.delete_object(Bucket=BUCKET_NAME, Key=file)
-        return True
+        if url.startswith(S3_LOCATION):
+            s3.delete_object(Bucket='job.tracker', Key=key)
+            return True
     except Exception as ex:
         print(str(ex))
         return False
