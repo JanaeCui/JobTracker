@@ -17,7 +17,7 @@ JobTracker is a job search management platform that allows users to easily to tr
 <br>
 # Technologies Used
 
-The main logic of the backend of honeycomb was created using python and flask with all database aspects being initialized using flaskalchemy and handled with postgreSQL.The front end was created using Javascript and rendered using React. React was chosen for this project due to its lite foot print, quick response times to maximize user experience especially when there may be multiple query's happening per page, and strong ecosystem backing and support especially around library's and other recourses to help maximize efficiency . The Site was styled with the use of CSS modules.
+The main logic of the backend of jobTracker was created using python and flask with all database aspects being initialized using flaskalchemy and handled with postgreSQL.The front end was created using Javascript and rendered using React. React was chosen for this project due to its lite foot print, quick response times to maximize user experience especially when there may be multiple query's happening per page, and strong ecosystem backing and support especially around library's and other recourses to help maximize efficiency . The Site was styled with the use of CSS modules.
 
 <br>
 
